@@ -1,5 +1,60 @@
 @import "tailwindcss";
 
+@theme {
+  /* Primary blue color palette */
+  --color-primary-50: #f0f4ff;
+  --color-primary-100: #d1e0ff;
+  --color-primary-200: #a3c7ff;
+  --color-primary-300: #66a5ff;
+  --color-primary-400: #3b82f6;
+  --color-primary-500: #2563eb;
+  --color-primary-600: #1d4ed8;
+  --color-primary-700: #1e40af;
+  --color-primary-800: #1e3a8a;
+  --color-primary-900: #1e3068;
+  --color-primary-950: #0f1c3d;
+
+  /* Dark neutral color palette */
+  --color-dark-50: #f8fafc;
+  --color-dark-100: #f1f5f9;
+  --color-dark-200: #e2e8f0;
+  --color-dark-300: #cbd5e1;
+  --color-dark-400: #94a3b8;
+  --color-dark-500: #64748b;
+  --color-dark-600: #475569;
+  --color-dark-700: #334155;
+  --color-dark-800: #1e293b;
+  --color-dark-900: #0f172a;
+  --color-dark-950: #0a0f1e;
+
+  /* Surface color */
+  --color-surface: #111827;
+
+  /* Border radius */
+  --radius-4xl: 2rem;
+
+  /* Glow shadows */
+  --shadow-glow-sm: 0 0 12px rgba(59,130,246,0.08);
+  --shadow-glow: 0 0 24px rgba(59,130,246,0.12);
+  --shadow-glow-md: 0 0 36px rgba(59,130,246,0.18);
+  --shadow-glow-lg: 0 0 48px rgba(59,130,246,0.25);
+  --shadow-glow-xl: 0 0 64px rgba(59,130,246,0.3);
+
+  /* Expand animation */
+  --animate-expand: expand 0.3s ease-out forwards;
+
+  @keyframes expand {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
 /* Noise texture overlay utility */
 .noise-overlay {
   position: relative;
