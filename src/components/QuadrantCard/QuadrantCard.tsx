@@ -7,11 +7,11 @@ function QuadrantCard({ card, isExpanded, isAnyExpanded, onExpand }: QuadrantCar
     ease aspect-[3.23/2] w-[90%] mx-auto
   `;
 
-  const stateClasses = isExpanded
-    ? 'opacity-0'
-    : isAnyExpanded
-    ? 'opacity-30 pointer-events-none'
-    : 'hover:scale-[1.02] hover:border-primary-700 hover:shadow-glow';
+    const stateClasses = isExpanded
+      ? 'hidden pointer-events-none'
+      : isAnyExpanded
+      ? 'hidden pointer-events-none'
+      : 'hover:scale-[1.02] hover:border-primary-700 hover:shadow-glow';
 
   return (
     <div
