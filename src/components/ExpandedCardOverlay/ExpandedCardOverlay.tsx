@@ -5,15 +5,9 @@ function ExpandedCardOverlay({ card, onClose }: ExpandedCardOverlayProps) {
     <div
       onClick={onClose}
       className="
-        fixed inset-1 z-50
-        rounded-4xl shadow-glow-lg
-        flex items-center justify-center
-        text-primary-50 text-2xl font-medium
-        cursor-pointer
-        bg-surface
-        animate-expand
-        max-w-[30vw] max-h-[30vh]
-        m-auto
+        fixed inset-1 z-50 rounded-4xl shadow-glow-lg flex items-center 
+        justify-center text-primary-50 text-2xl font-medium cursor-pointer 
+        bg-surface animate-expand aspect-[3.23/2] w-[45vw] m-auto
       "
       role="dialog"
       aria-modal="true"

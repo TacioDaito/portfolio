@@ -2,13 +2,9 @@ import type { QuadrantCardProps } from './QuadrantCard.types';
 
 function QuadrantCard({ card, isExpanded, isAnyExpanded, onExpand }: QuadrantCardProps) {
   const baseClasses = `
-    quadrant-card
-    flex items-center justify-center
-    text-primary-50 text-2xl font-medium
-    rounded-4xl
-    cursor-pointer
-    transition-all duration-300 ease
-    h-full
+    quadrant-card flex items-center justify-center text-primary-50 text-2xl 
+    font-medium rounded-4xl cursor-pointer transition-all duration-300 
+    ease aspect-[3.23/2] w-[90%] mx-auto
   `;
 
   const stateClasses = isExpanded

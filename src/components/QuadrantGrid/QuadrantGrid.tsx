@@ -6,7 +6,10 @@ import Backdrop from '../Backdrop';
 
 function QuadrantGrid({ expandedCard, onCardExpand, onCardClose }: QuadrantGridProps) {
   return (
-    <div className="grid grid-cols-2 grid-rows-2 gap-2 h-full relative">
+    <div className="
+      grid grid-cols-2 grid-rows-2 gap-2 relative items-center bg-surface
+      noise-overlay rounded-4xl aspect-[3.23/2] w-[50vw]
+    ">
       {cards.map((card) => (
         <div key={card.id} className="relative">
           <QuadrantCard

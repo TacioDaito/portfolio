@@ -25,14 +25,12 @@ function App() {
   }, [handleKeyDown]);
 
   return (
-    <div className="bg-dark-950 noise-overlay h-screen w-screen flex items-center justify-center p-4 md:p-12">
-      <div className="bg-surface noise-overlay rounded-4xl p-2 md:p-4 w-full max-w-6xl h-full max-h-[80vh]">
+    <div className="bg-dark-950 noise-overlay h-screen w-screen flex items-center justify-center">
         <QuadrantGrid
           expandedCard={expandedCard}
           onCardExpand={handleCardExpand}
           onCardClose={handleCardClose}
         />
-      </div>
     </div>
   );
 }
