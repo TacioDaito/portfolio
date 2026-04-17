@@ -2,7 +2,6 @@ import { cards } from '../../data/cards';
 import type { QuadrantGridProps } from './QuadrantGrid.types';
 import QuadrantCard from '../QuadrantCard';
 import ExpandedCardOverlay from '../ExpandedCardOverlay';
-import Backdrop from '../Backdrop';
 
 function QuadrantGrid({ expandedCard, onCardExpand, onCardClose }: QuadrantGridProps) {
   return (
@@ -28,7 +27,6 @@ function QuadrantGrid({ expandedCard, onCardExpand, onCardClose }: QuadrantGridP
         </div>
       ))}
 
-      {expandedCard !== null && <Backdrop onClose={onCardClose} />}
     </div>
   );
 }
