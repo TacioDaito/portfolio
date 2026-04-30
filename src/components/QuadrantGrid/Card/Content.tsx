@@ -1,6 +1,15 @@
 import type { QuadrantCardProps } from './QuadrantCard.types';
+import { CardData } from '../../../types/card';
 
-function QuadrantCard({ card, isExpanded, isAnyExpanded, onExpand }: QuadrantCardProps) {
+
+export interface QuadrantCardProps {
+  card: CardData;
+  isExpanded: boolean;
+  isAnyExpanded: boolean;
+  onExpand: () => void;
+}
+
+export function Content({ card, isExpanded, isAnyExpanded, onExpand }: QuadrantCardProps) {
   const baseClasses = `
     quadrant-card flex items-center justify-center text-primary-50 text-2xl 
     font-medium rounded-4xl cursor-pointer transition-all duration-300 
@@ -31,5 +40,3 @@ function QuadrantCard({ card, isExpanded, isAnyExpanded, onExpand }: QuadrantCar
     </div>
   );
 }
-
-export default QuadrantCard;

@@ -1,7 +1,12 @@
-import type { ExpandedCardOverlayProps } from './ExpandedCardOverlay.types';
+import { CardData } from '../../../types/card';
 import OutsideClickHandler from 'react-outside-click-handler';
 
-function ExpandedCardOverlay({ card, onClose }: ExpandedCardOverlayProps) {
+export interface ExpandedOverlayProps {
+  card: CardData;
+  onClose: () => void;
+}
+
+export function ExpandedOverlay({ card, onClose }: ExpandedOverlayProps) {
   return (
     <OutsideClickHandler onOutsideClick={onClose}>
       <div
@@ -20,5 +25,3 @@ function ExpandedCardOverlay({ card, onClose }: ExpandedCardOverlayProps) {
     </OutsideClickHandler>
   );
 }
-
-export default ExpandedCardOverlay;
