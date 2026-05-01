@@ -1,16 +1,11 @@
-import QuadrantGrid from './components/QuadrantGrid';
+import { Grid } from './components/Card/Grid';
 
 function App() {
-  return (
-    <div className="bg-dark-950 noise-overlay h-screen w-screen flex items-center justify-center">
-        <QuadrantGrid>
-          <QuadrantGrid.Card>
-            <QuadrantGrid.Card.Content />
-            <QuadrantGrid.Card.ExpandedOverlay />
-          </QuadrantGrid.Card>
-        </QuadrantGrid>
-    </div>
-  );
+	return (
+		<div className="bg-dark-950 noise-overlay h-screen w-screen flex items-center justify-center">
+			<Grid />
+		</div>
+	);
 }
 
 export default App;

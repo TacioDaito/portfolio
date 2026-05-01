@@ -1,43 +1,37 @@
-import { useState, useEffect, useCallback, createContext } from 'react';
-import type { CardId } from '../types/card';
+import { useState, useEffect, KeyboardEvent as ReactKeyBoardEvent } from 'react';
+import type { CardId } from '../constants/cards';
 
-type GridContextType = {
-    expandedCard: CardId | null;
-    onCardExpand: (id: CardId) => void;
-    onCardClose: () => void;
-};
-
-export const GridContext = createContext<GridContextType>({
-        expandedCard: null,
-        onCardExpand: () => {},
-        onCardClose: () => {},
-    });
+export type ExpandedCard = CardId | null;
+export type SetExpandedCard = (cardId: CardId | null) => void;
+export type IsExpanded = (cardId: CardId) => boolean;
+export type HandleKeyPressExpand = (e: ReactKeyBoardEvent, cardId: CardId) => void;
 
 export const useCardControl = () => {
-    const [expandedCard, setExpandedCard] = useState<CardId | null>(null);
 
-    const handleCardExpand = useCallback((id: CardId) => {
-        setExpandedCard(id);
-    }, []);
+	const [expandedCard, setExpandedCard] = useState<CardId | null>(null);
+	const isExpanded = (cardId: CardId) => expandedCard === cardId;
 
-    const handleCardClose = useCallback(() => {
-        setExpandedCard(null);
-    }, []);
+	const handleKeyPressExpand = (e: ReactKeyBoardEvent, cardId: CardId) => {
+		if (e.key === 'Enter' || e.key === ' ') {
+			e.preventDefault();
+			setExpandedCard(cardId);
+		}
+	};
 
-    const handleKeyDown = useCallback((e: KeyboardEvent) => {
-        if (e.key === 'Escape' && expandedCard !== null) {
-            setExpandedCard(null);
-        }
-    }, [expandedCard]);
+	useEffect(() => {
+		const handleKeyPressEscape = (e: KeyboardEvent) => {
+			if (e.key === 'Escape' && expandedCard !== null) {
+				setExpandedCard(null);
+			}
+		}
+		window.addEventListener('keydown', handleKeyPressEscape);
+		return () => window.removeEventListener('keydown', handleKeyPressEscape);
+	}, [expandedCard]);
 
-    useEffect(() => {
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [handleKeyDown]);
-
-    return {
-        expandedCard,
-        handleCardExpand,
-        handleCardClose,
-    };
+	return {
+		expandedCard,
+		setExpandedCard,
+		isExpanded,
+		handleKeyPressExpand,
+	};
 }
