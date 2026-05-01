@@ -1,10 +1,24 @@
-import { useState, useEffect, KeyboardEvent as ReactKeyBoardEvent } from 'react';
+import { useState, useEffect, KeyboardEvent as ReactKeyBoardEvent, createContext } from 'react';
 import type { CardId } from '../constants/cards';
 
 export type ExpandedCard = CardId | null;
 export type SetExpandedCard = (cardId: CardId | null) => void;
 export type IsExpanded = (cardId: CardId) => boolean;
 export type HandleKeyPressExpand = (e: ReactKeyBoardEvent, cardId: CardId) => void;
+
+interface CardControlContextProps {
+	expandedCard: ExpandedCard;
+	setExpandedCard: SetExpandedCard;
+	isExpanded: IsExpanded;
+	handleKeyPressExpand: HandleKeyPressExpand;
+}
+
+export const CardControlContext = createContext<CardControlContextProps>({
+	expandedCard: null,
+	setExpandedCard: () => { throw new Error('setExpandedCard called outside CardControlProvider'); },
+	isExpanded: () => { throw new Error('isExpanded called outside CardControlProvider'); },
+	handleKeyPressExpand: () => { throw new Error('handleKeyPressExpand called outside CardControlProvider'); },
+});
 
 export const useCardControl = () => {
 
@@ -26,7 +40,7 @@ export const useCardControl = () => {
 		}
 		window.addEventListener('keydown', handleKeyPressEscape);
 		return () => window.removeEventListener('keydown', handleKeyPressEscape);
-	}, [expandedCard]);
+	});
 
 	return {
 		expandedCard,

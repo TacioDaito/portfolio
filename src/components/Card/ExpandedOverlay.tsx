@@ -1,13 +1,14 @@
 import OutsideClickHandler from 'react-outside-click-handler';
 import { CardData } from '../../constants/cards';
-import { SetExpandedCard } from '../../hooks/useCardControl';
+import { useContext } from 'react';
+import { CardControlContext } from '../../hooks/useCardControl';
 
 interface ExpandedOverlayProps {
-	card: CardData,
-	setExpandedCard: SetExpandedCard,
+	card: CardData;
 }
 
-export function ExpandedOverlay( { card, setExpandedCard }: ExpandedOverlayProps ) {
+export function ExpandedOverlay({ card }: ExpandedOverlayProps) {
+	const { setExpandedCard } = useContext(CardControlContext);
 	return (
 		<OutsideClickHandler onOutsideClick={() => setExpandedCard(null)}>
 			<div

@@ -1,21 +1,19 @@
 import { CardData } from "../../constants/cards";
-import { ExpandedCard, SetExpandedCard, IsExpanded, HandleKeyPressExpand } from "../../hooks/useCardControl";
+import { useContext } from 'react';
+import { CardControlContext } from '../../hooks/useCardControl';
 
 interface ContentProps {
-	card: CardData,
-	expandedCard: ExpandedCard,
-	isExpanded: IsExpanded,
-	setExpandedCard: SetExpandedCard,
-	handleKeyPressExpand: HandleKeyPressExpand,
+	card: CardData;
 }
 
-export function Content({ card, expandedCard, isExpanded, setExpandedCard, handleKeyPressExpand }: ContentProps) {
+export function Content({ card }: ContentProps) {
+	const { expandedCard, setExpandedCard, isExpanded, handleKeyPressExpand } = useContext(CardControlContext);
 
 	const baseClasses = `
-    quadrant-card flex items-center justify-center text-primary-50 text-2xl 
-    font-medium rounded-4xl cursor-pointer transition-all duration-300 
-    ease aspect-[3.23/2] w-[90%] mx-auto
-  `;
+		quadrant-card flex items-center justify-center text-primary-50 text-2xl 
+		font-medium rounded-4xl cursor-pointer transition-all duration-300 
+		ease aspect-[3.23/2] w-[90%] mx-auto
+	`;
 
 	const stateClasses = isExpanded(card.id) ? 'hidden pointer-events-none'
 		: expandedCard ? 'hidden pointer-events-none'
