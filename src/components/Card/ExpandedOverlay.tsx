@@ -1,6 +1,6 @@
 import OutsideClickHandler from 'react-outside-click-handler';
 import { CardData } from '../../constants/cards';
-import { useContext } from 'react';
+import { useContext, CSSProperties } from 'react';
 import { CardControlContext } from '../../hooks/useCardControl';
 
 interface ExpandedOverlayProps {
@@ -8,7 +8,9 @@ interface ExpandedOverlayProps {
 }
 
 export function ExpandedOverlay({ card }: ExpandedOverlayProps) {
+	
 	const { setExpandedCard } = useContext(CardControlContext);
+	
 	return (
 		<OutsideClickHandler onOutsideClick={() => setExpandedCard(null)}>
 			<div
@@ -20,10 +22,14 @@ export function ExpandedOverlay({ card }: ExpandedOverlayProps) {
 				role="dialog"
 				aria-modal="true"
 				aria-label={`${card.label} section expanded`}
-				style={{ boxSizing: 'border-box' }}
+				style={{
+					boxSizing: 'border-box',
+					'--expand-origin': card.transformOrigin || 'top left',
+				} as CSSProperties}
 			>
 				<span className="text-center p-4">{card.label}</span>
 			</div>
 		</OutsideClickHandler>
 	);
+	
 }

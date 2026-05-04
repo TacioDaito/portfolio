@@ -3,7 +3,9 @@ import { useCardControl, CardControlContext } from '../../hooks/useCardControl';
 import { Wrapper } from './Wrapper';
 
 export const Grid = () => {
+
 	const { expandedCard, setExpandedCard, isExpanded, handleKeyPressExpand } = useCardControl();
+
 	return (
 		<CardControlContext.Provider value={{ expandedCard, setExpandedCard, isExpanded, handleKeyPressExpand }}>
 			<div className="grid grid-cols-2 grid-rows-2 gap-2 relative items-center bg-surface
@@ -12,4 +14,5 @@ export const Grid = () => {
 			</div>
 		</CardControlContext.Provider>
 	);
+
 }
