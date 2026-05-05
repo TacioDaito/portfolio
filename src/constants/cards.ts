@@ -7,3 +7,4 @@ export const CARDS = [
 
 export type CardId = typeof CARDS[number]['id'];
 export type CardData = typeof CARDS[number];
+export interface CardProps { card: CardData }

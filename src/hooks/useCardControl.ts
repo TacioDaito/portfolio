@@ -1,16 +1,17 @@
 import { useState, useEffect, KeyboardEvent as ReactKeyBoardEvent, createContext } from 'react';
 import type { CardId } from '../constants/cards';
 
-export type ExpandedCard = CardId | null;
-export type SetExpandedCard = (cardId: CardId | null) => void;
-export type IsExpanded = (cardId: CardId) => boolean;
-export type HandleKeyPressExpand = (e: ReactKeyBoardEvent, cardId: CardId) => void;
+type ExpandedCard = CardId | null;
+type SetExpandedCard = (cardId: CardId | null) => void;
+type IsExpanded = (cardId: CardId) => boolean;
+type IsOtherCardExpanded = (cardId: CardId) => boolean;
+type HandleKeyPressExpand = (e: ReactKeyBoardEvent, cardId: CardId) => void;
 
 interface CardControlContextProps {
 	expandedCard: ExpandedCard;
 	setExpandedCard: SetExpandedCard;
 	isExpanded: IsExpanded;
-	isOtherCardExpanded: (cardId: CardId) => boolean;
+	isOtherCardExpanded: IsOtherCardExpanded;
 	handleKeyPressExpand: HandleKeyPressExpand;
 }
 
@@ -33,7 +34,7 @@ export const useCardControl = () => {
 			setExpandedCard(cardId);
 		}
 	};
-	
+
 	useEffect(() => {
 		const handleKeyPressEscape = (e: KeyboardEvent) => {
 			if (e.key === 'Escape' && expandedCard !== null) {
