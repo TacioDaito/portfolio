@@ -17,9 +17,9 @@ export function Card({ card }: CardProps) {
 		ease aspect-[3.23/2] w-[90%] m-auto
 	`;
 	const stateClasses = isExpanded(card.id)
-		? `shadow-glow-sm/30 scale-213 ${card.transformOrigin}`
+		? `shadow-glow-sm/30 scale-211 ${card.transformOrigin}`
 		: isOtherCardExpanded(card.id) ? 'hidden pointer-events-none'
-		: 'hover:scale-[1.02] hover:border-primary-700 hover:shadow-glow';
+		: 'shadow-md/30 hover:scale-[1.02] hover:border-primary-700 hover:shadow-glow';
 
 	return (
 		<OutsideClickHandler onOutsideClick={() => setExpandedCard(null)}>
@@ -29,11 +29,11 @@ export function Card({ card }: CardProps) {
 				aria-label={`${isExpanded(card.id) ? 'Expanded' : 'Open'} ${card.label} section`}
 				role={isExpanded(card.id) ? 'dialog' : undefined} aria-modal={isExpanded(card.id)}
 			>
-				{card.label === 'About Me' && <AboutMe card={card} />}
-				{card.label === 'Skills' && <Skills card={card} />}
-				{card.label === 'Portfolio' && <Portfolio card={card} />}
-				{card.label === 'Contact' && <Contact card={card} />}
-				<div className="text-sm mt-10">{ card.label }</div>
+				{card.label === 'Sobre Mim' && <AboutMe card={card} />}
+				{card.label === 'Competências' && <Skills card={card} />}
+				{card.label === 'Portfólio' && <Portfolio card={card} />}
+				{card.label === 'Contato' && <Contact card={card} />}
+				<div className="absolute text-sm text-gray-400 mt-55">{ card.label }</div>
 			</button>
 		</OutsideClickHandler>
 	);
