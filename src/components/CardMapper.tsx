@@ -5,7 +5,7 @@ export const CardMapper = () => {
 	return (
 		<>
 			{CARDS.map((card) => (
-				<div key={card.id} className="relative">
+				<div key={card.id}>
 					<Card card={card} />
 				</div>
 			))}

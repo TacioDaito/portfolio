@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 
 @theme {
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   
   --color-primary-50: #f0f4ff;
   --color-primary-100: #d1e0ff;
@@ -24,26 +26,49 @@
   --color-dark-700: #334155;
   --color-dark-800: #1e293b;
   --color-dark-900: #0f172a;
-  --color-dark-950: #0a0f1e;
+  --color-dark-950: #060b18;
 
-  --color-surface: #111827;
+  --color-surface: rgb(17, 24, 39);
 
   --radius-4xl: 2rem;
 
-  --shadow-glow-sm: 0 0 12px rgba(59, 130, 246, 0.08);
-  --shadow-glow: 0 0 24px rgba(59, 130, 246, 0.12);
-  --shadow-glow-md: 0 0 36px rgba(59, 130, 246, 0.18);
-  --shadow-glow-lg: 0 0 48px rgba(59, 130, 246, 0.25);
-  --shadow-glow-xl: 0 0 64px rgba(59, 130, 246, 0.3);
+  --shadow-bottom-sm: 0 2px 2px rgba(9, 13, 20, 0.3);
+  
+  --shadow-glow-sm: 0 0 6px rgba(72, 51, 255, 0.15);
+  --shadow-glow: 0 0 8px rgba(72, 51, 255, 0.12);
+  --shadow-glow-md: 0 0 12px rgba(72, 51, 255, 0.3);
+  --shadow-glow-lg: 0 0 24px rgba(72, 51, 255, 0.5);
+  --shadow-glow-xl: 0 0 36px rgba(72, 51, 255, 0.7);
+
+  --animate-fade-in-fast: fadeIn 0.5s cubic-bezier(0, 0, 1, 1) forwards;
+  --animate-fade-in-mid: fadeIn 0.7s cubic-bezier(0, 0, 1, 1) forwards;
+  --animate-fade-in-slow: fadeIn 1s cubic-bezier(0, 0, 1, 1) forwards;
+  --animate-fade-out: fadeOut 0.2s ease-out forwards;
 
 }
 
-.noise-overlay {
+@font-face {
+  font-family: 'Inter';
+  src: url('assets/fonts/Inter-Regular.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+.bg-overlay {
   position: relative;
   overflow: hidden;
 }
 
-.noise-overlay::before {
+.bg-overlay::before {
   content: '';
   position: absolute;
   top: 0;
@@ -53,11 +78,14 @@
   opacity: 0.03;
   pointer-events: none;
   z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
 }
 
-.noise-overlay > * {
+.bg-overlay > * {
   position: relative;
   z-index: 1;
+}
+
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
 }
