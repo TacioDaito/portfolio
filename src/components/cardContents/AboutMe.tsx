@@ -10,8 +10,8 @@ export const AboutMe = ({ card }: CardProps) => {
     return (
         <div className="flex flex-row items-center gap-8 select-none">
             <div className={`flex flex-col text-left
-                ${isExpanded(card.id) ? 'text-xl' : 'text-4xl'}`}>
-                <p className="text-stone-50 mb-0.4">Tacio Kikuchi</p>
+                ${isExpanded(card.id) ? 'text-xl' : 'text-4xl gap-2'}`}>
+                <p className="text-stone-50">Tacio Kikuchi</p>
                 <p className={`text-stone-200 ${isExpanded(card.id) ? 'text-lg animate-fade-in-fast'
                     : 'text-3xl'}`}>{`${isExpanded(card.id) ? `Desenvolvedor` : `Dev.`} Full Stack`}</p>
                 {isExpanded(card.id) && <div>
