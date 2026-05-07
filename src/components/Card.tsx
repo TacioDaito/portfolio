@@ -29,8 +29,8 @@ export function Card({ card }: CardProps) {
 			role={isExpanded(card.id) ? 'dialog' : undefined} aria-modal={isExpanded(card.id)}
 		>
 			{card.label === 'Sobre Mim' && <AboutMe card={card} />}
-			{card.label === 'Competências' && <Skills card={card} />}
 			{card.label === 'Portfólio' && <Portfolio card={card} />}
+			{card.label === 'Competências' && <Skills card={card} />}
 			{card.label === 'Contato' && <Contact card={card} />}
 			<div className={`absolute text-indigo-400 mt-55 transition-all duration-400 select-none
 				${isExpanded(card.id) ? 'text-xs' : 'text-base'}`}>{card.label}</div>
