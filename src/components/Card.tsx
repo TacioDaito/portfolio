@@ -18,7 +18,7 @@ export function Card({ card }: CardProps) {
 	const stateClasses = isExpanded(card.id)
 		? `shadow-lg/100 shadow-glow-lg scale-211 ${card.transformOrigin} z-50`
 		: isOtherCardExpanded(card.id) ? `pointer-events-none animate-fade-out-fast`
-		: `shadow-bottom-sm hover:scale-[1.02] hover:border-primary-700
+			: `shadow-bottom-sm hover:scale-[1.02] hover:border-primary-700
 		hover:shadow-glow-lg animate-fade-in-fast cursor-pointer`;
 
 	return (
@@ -33,7 +33,7 @@ export function Card({ card }: CardProps) {
 			{card.label === 'Portfólio' && <Portfolio card={card} />}
 			{card.label === 'Contato' && <Contact card={card} />}
 			<div className={`absolute text-indigo-400 mt-55 transition-all duration-400 select-none
-				${isExpanded(card.id) ? 'text-xs' : 'text-base'}`}>{ card.label }</div>
+				${isExpanded(card.id) ? 'text-xs' : 'text-base'}`}>{card.label}</div>
 		</button>
 	);
 

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CardControlContext } from "../../hooks/useCardControl";
 import { CardProps } from "../../constants/cards";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import phpLogo from '../../assets/images/php.svg'
 import vueLogo from '../../assets/images/vue.svg'
 import reactLogo from '../../assets/images/react.svg'
@@ -35,25 +36,25 @@ export const Skills = ({ card }: CardProps) => {
         labelB: ``
     };
     const stateClasses = expanded
-        ? { 
-            grid: 'grid-cols-6 grid-rows-3 gap-y-4', 
+        ? {
+            grid: 'grid-cols-6 grid-rows-3 gap-y-4',
             logos: 'h-8',
-            logoContainer: `gap-2 text-[0.7vh] flex flex-col gap-1 items-center
-                animate-fade-in-fast group`,
+            logoContainer: `gap-2 flex flex-col gap-1 items-center
+                animate-fade-in-fast group text-[0.7vh]`,
             labelContainer: `relative flex flex-col items-center w-full`,
             labelA: `relative transition-all duration-400
                 ease-in-out group-hover:-translate-y-full group-hover:opacity-0 text-stone-200`,
             labelB: `absolute translate-y-full opacity-0 transition-all duration-400
-                ease-in-out group-hover:translate-y-0 group-hover:opacity-100 text-indigo-200` 
-          }
-        : { 
-            grid: 'grid-cols-3 grid-rows-2 gap-y-8 px-12', 
+                ease-in-out group-hover:translate-y-0 group-hover:opacity-100 text-indigo-200`
+        }
+        : {
+            grid: 'grid-cols-3 grid-rows-2 gap-y-8 px-12',
             logos: 'h-14',
             logoContainer: 'hidden',
             labelContainer: 'hidden',
             labelA: 'hidden',
-            labelB: 'hidden' 
-          };
+            labelB: 'hidden'
+        };
     const fullClasses = {
         grid: `${baseClasses.grid} ${stateClasses.grid}`,
         logos: `${baseClasses.logos} ${stateClasses.logos}`,
@@ -76,13 +77,13 @@ export const Skills = ({ card }: CardProps) => {
 
     return (
         <div className={fullClasses.grid}>
-            {!expanded ? 
+            {!expanded ?
                 <>
-                    <img src={phpLogo} alt="PHP" className={fullClasses.logos}/>
-                    <img src={laravelLogo} alt="Laravel" className={fullClasses.logos}/>
-                    <img src={javaScriptLogo} alt="JavaScript" className={fullClasses.logos}/>
+                    <img src={phpLogo} alt="PHP" className={fullClasses.logos} />
+                    <img src={laravelLogo} alt="Laravel" className={fullClasses.logos} />
+                    <img src={javaScriptLogo} alt="JavaScript" className={fullClasses.logos} />
                     <img src={vueLogo} alt="Vue.js" className={fullClasses.logos} />
-                    <img src={reactLogo} alt="React.js" className={fullClasses.logos}/>
+                    <img src={reactLogo} alt="React.js" className={fullClasses.logos} />
                     <p className="text-4xl text-stone-200">+13</p>
                 </> :
                 <>
@@ -103,7 +104,24 @@ export const Skills = ({ card }: CardProps) => {
                     <SkillItem src={n8nLogo} alt="n8n" labelA="n8n" labelB="< 1 Ano" />
                     <SkillItem src={awsLogo} alt="AWS" labelA="AWS" labelB="< 1 Anos" />
                     <SkillItem src={tailwindLogo} alt="Tailwind CSS" labelA="Tailwind CSS" labelB="+2 Ano" />
-                    <SkillItem src={ellipsisLogo} alt="Etc." labelA="Etc." labelB="SOLID, YAGNI, KISS, DRY" />
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <div className={fullClasses.logoContainer}><img src={ellipsisLogo} alt="Outros" className={fullClasses.logos} />
+                                <span className="text-stone-200">Outros</span>
+                            </div>
+                        </TooltipTrigger>
+                        <TooltipContent className="flex flex-col text-sm shadow-lg/50 items-start
+                            select-none">
+                            <span className="text-stone-200">• SOLID, DRY, KISS, YAGNI</span>
+                            <span className="text-stone-200">• Arquitetura Monolítica Modular</span>
+                            <span className="text-stone-200">• Arquitetura de Microserviços</span>
+                            <span className="text-stone-200">• Domain-Driven Design (DDD)</span>
+                            <span className="text-stone-200">• Test-Driven Design (TDD)</span>
+                            <span className="text-stone-200">• Student Information Systems (SIS)</span>
+                            <span className="text-stone-200">• Software as a Service (SaaS)</span>
+                            <span className="text-stone-200">• Infraestrutura de Nuvem</span>
+                        </TooltipContent>
+                    </Tooltip>
                 </>
             }
         </div>
