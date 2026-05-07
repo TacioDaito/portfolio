@@ -12,14 +12,14 @@ export function Card({ card }: CardProps) {
 		= useContext(CardControlContext);
 	const baseClasses = `
 		flex flex-col justify-center items-center text-shadow-xs/30 text-2xl 
-		font-medium rounded-4xl cursor-pointer transition-all duration-400 
+		font-medium rounded-2xl transition-all duration-400 
 		ease aspect-[3.23/2] w-[90%] m-auto bg-surface noise relative
 	`;
 	const stateClasses = isExpanded(card.id)
 		? `shadow-lg/100 shadow-glow-lg scale-211 ${card.transformOrigin} z-50`
 		: isOtherCardExpanded(card.id) ? `pointer-events-none animate-fade-out-fast`
 		: `shadow-bottom-sm hover:scale-[1.02] hover:border-primary-700
-		hover:shadow-glow-lg animate-fade-in-fast`;
+		hover:shadow-glow-lg animate-fade-in-fast cursor-pointer`;
 
 	return (
 		<button
