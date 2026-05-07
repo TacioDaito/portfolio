@@ -24,89 +24,65 @@ import ellipsisLogo from '../../assets/images/ellipsis.svg'
 export const Skills = ({ card }: CardProps) => {
 
     const { isExpanded } = useContext(CardControlContext);
+
     const expanded = isExpanded(card.id);
 
-    const baseClasses = {
-        grid: `grid justify-items-center items-center w-full px-4 mb-6`,
-        logos: `drop-shadow-sm/50 group-hover:drop-shadow-sm/100
-            group-hover:drop-shadow-indigo-600 transition-all duration-300`,
-        logoContainer: ``,
-        labelContainer: ``,
-        labelA: ``,
-        labelB: ``
-    };
-    const stateClasses = expanded
-        ? {
-            grid: 'grid-cols-6 grid-rows-3 gap-y-4',
-            logos: 'h-8',
-            logoContainer: `gap-2 flex flex-col gap-1 items-center
-                animate-fade-in-fast group text-[0.7vh]`,
-            labelContainer: `relative flex flex-col items-center w-full`,
-            labelA: `relative transition-all duration-400
-                ease-in-out group-hover:-translate-y-full group-hover:opacity-0 text-stone-200`,
-            labelB: `absolute translate-y-full opacity-0 transition-all duration-400
-                ease-in-out group-hover:translate-y-0 group-hover:opacity-100 text-indigo-200`
-        }
-        : {
-            grid: 'grid-cols-3 grid-rows-2 gap-y-8 px-12',
-            logos: 'h-14',
-            logoContainer: 'hidden',
-            labelContainer: 'hidden',
-            labelA: 'hidden',
-            labelB: 'hidden'
-        };
-    const fullClasses = {
-        grid: `${baseClasses.grid} ${stateClasses.grid}`,
-        logos: `${baseClasses.logos} ${stateClasses.logos}`,
-        logoContainer: `${baseClasses.logoContainer} ${stateClasses.logoContainer}`,
-        labelContainer: `${baseClasses.labelContainer} ${stateClasses.labelContainer}`,
-        labelA: `${baseClasses.labelA} ${stateClasses.labelA}`,
-        labelB: `${baseClasses.labelB} ${stateClasses.labelB}`
+    const classes = {
+        grid: `grid justify-items-center items-center w-full px-4 mb-2 ${expanded
+            ? 'grid-cols-6 grid-rows-3 gap-y-4' : `grid-cols-3 grid-rows-2 gap-y-8 px-12
+            animate-fade-in-fast`}`,
+        logo: `drop-shadow-sm/50 group-hover:drop-shadow-sm/100 group-hover:drop-shadow-indigo-600
+            transition-all duration-300 ${expanded ? 'h-7' : 'h-12'}`,
+        div: expanded ? `gap-2 flex flex-col gap-1 items-center animate-fade-in-fast 
+            group text-[0.8vh]` : `hidden`,
+        labelA: expanded ? `relative transition-all duration-400 ease-in-out
+            group-hover:-translate-y-full group-hover:opacity-0 text-stone-200` : `hidden`,
+        labelB: expanded ? `absolute translate-y-full opacity-0 transition-all 
+            duration-400 ease-in-out group-hover:translate-y-0 group-hover:opacity-100
+            text-indigo-200` : `hidden`,
     };
 
-    const SkillItem = ({ src, alt, labelA, labelB }
-        : { src: string, alt: string, labelA: string, labelB: string }) => (
-        <div className={fullClasses.logoContainer}>
-            <img src={src} alt={alt} className={fullClasses.logos} />
-            <span className={fullClasses.labelContainer}>
-                <span className={fullClasses.labelA}>{labelA}</span>
-                <span className={fullClasses.labelB}>{labelB}</span>
-            </span>
-        </div>
-    );
+    const skills = [
+        { src: phpLogo, alt: 'PHP', labelB: '+3 Anos' },
+        { src: laravelLogo, alt: 'Laravel', labelB: '+2 Anos' },
+        { src: javaScriptLogo, alt: 'JavaScript', labelB: '+3 Anos' },
+        { src: vueLogo, alt: 'Vue.js', labelB: '+2 Anos' },
+        { src: reactLogo, alt: 'React.js', labelB: '< 1 Ano' },
+        { src: nextjsLogo, alt: 'Next.js', labelB: '< 1 Ano' },
+        { src: typeScriptLogo, alt: 'TypeScript', labelB: '< 1 Ano' },
+        { src: mariaDbLogo, alt: 'MariaDB', labelB: '+3 Anos' },
+        { src: mySqlLogo, alt: 'MySQL', labelB: '+3 Anos' },
+        { src: postgresLogo, alt: 'PostgreSQL', labelB: '+3 Anos' },
+        { src: mongoLogo, alt: 'MongoDB', labelB: '< 1 Ano' },
+        { src: redisLogo, alt: 'Redis', labelB: '< 1 Ano' },
+        { src: gitLogo, alt: 'Git', labelB: '+5 Anos' },
+        { src: dockerLogo, alt: 'Docker', labelB: '+1 Ano' },
+        { src: n8nLogo, alt: 'n8n', labelB: '< 1 Ano' },
+        { src: awsLogo, alt: 'AWS', labelB: '< 1 Ano' },
+        { src: tailwindLogo, alt: 'Tailwind CSS', labelB: '+2 Anos' }
+    ];
 
     return (
-        <div className={fullClasses.grid}>
-            {!expanded ?
-                <>
-                    <img src={phpLogo} alt="PHP" className={fullClasses.logos} />
-                    <img src={laravelLogo} alt="Laravel" className={fullClasses.logos} />
-                    <img src={javaScriptLogo} alt="JavaScript" className={fullClasses.logos} />
-                    <img src={vueLogo} alt="Vue.js" className={fullClasses.logos} />
-                    <img src={reactLogo} alt="React.js" className={fullClasses.logos} />
+        <div className={classes.grid}>
+            {!expanded
+                ? <>
+                    {skills.slice(0, 5).map(skill => <img key={skill.alt}
+                        src={skill.src} alt={skill.alt} className={classes.logo} />)}
                     <p className="text-4xl text-stone-200">+13</p>
-                </> :
-                <>
-                    <SkillItem src={phpLogo} alt="PHP" labelA="PHP" labelB="+3 Anos" />
-                    <SkillItem src={laravelLogo} alt="Laravel" labelA="Laravel" labelB="+2 Anos" />
-                    <SkillItem src={javaScriptLogo} alt="JavaScript" labelA="JavaScript" labelB="+3 Anos" />
-                    <SkillItem src={vueLogo} alt="Vue.js" labelA="Vue.js" labelB="+2 Anos" />
-                    <SkillItem src={reactLogo} alt="React.js" labelA="React.js" labelB="< 1 Ano" />
-                    <SkillItem src={nextjsLogo} alt="Next.js" labelA="Next.js" labelB="< 1 Ano" />
-                    <SkillItem src={typeScriptLogo} alt="TypeScript" labelA="TypeScript" labelB="< 1 Ano" />
-                    <SkillItem src={mariaDbLogo} alt="MariaDB" labelA="MariaDB" labelB="+3 Anos" />
-                    <SkillItem src={mySqlLogo} alt="MySQL" labelA="MySQL" labelB="+3 Anos" />
-                    <SkillItem src={postgresLogo} alt="PostgreSQL" labelA="PostgreSQL" labelB="+1 Ano" />
-                    <SkillItem src={mongoLogo} alt="MongoDB" labelA="MongoDB" labelB="+1 Ano" />
-                    <SkillItem src={redisLogo} alt="Redis" labelA="Redis" labelB="+1 Ano" />
-                    <SkillItem src={gitLogo} alt="Git" labelA="Git" labelB="+5 Anos" />
-                    <SkillItem src={dockerLogo} alt="Docker" labelA="Docker" labelB="+1 Ano" />
-                    <SkillItem src={n8nLogo} alt="n8n" labelA="n8n" labelB="< 1 Ano" />
-                    <SkillItem src={awsLogo} alt="AWS" labelA="AWS" labelB="< 1 Anos" />
-                    <SkillItem src={tailwindLogo} alt="Tailwind CSS" labelA="Tailwind CSS" labelB="+2 Ano" />
+                </>
+                : <>
+                    {skills.map(skill => (
+                        <div key={skill.alt} className={classes.div}>
+                            <img src={skill.src} alt={skill.alt} className={classes.logo} />
+                            <span className="relative flex flex-col items-center w-full">
+                                <span className={classes.labelA}>{skill.alt}</span>
+                                <span className={classes.labelB}>{skill.labelB}</span>
+                            </span>
+                        </div>
+                    ))}
                     <Tooltip>
                         <TooltipTrigger>
-                            <div className={fullClasses.logoContainer}><img src={ellipsisLogo} alt="Outros" className={fullClasses.logos} />
+                            <div className={classes.div}><img src={ellipsisLogo} alt="Outros" className={classes.logo} />
                                 <span className="text-stone-200">Outros</span>
                             </div>
                         </TooltipTrigger>

@@ -1,84 +1,56 @@
-import { useContext } from "react";
-import { CardProps } from "../../constants/cards";
-import { CardControlContext } from "../../hooks/useCardControl";
-import gmailLogo from "../../assets/images/gmail.svg";
-import linkedInLogo from "../../assets/images/linkedin.svg";
-import whatsAppLogo from "../../assets/images/whatsapp.svg";
-import gitHubLogo from "../../assets/images/github.svg";
+import { useContext } from 'react';
+import { CardProps } from '../../constants/cards';
+import { CardControlContext } from '../../hooks/useCardControl';
+import { CopyButton } from '@/components/ui/copyButton';
+import gmailLogo from '../../assets/images/gmail.svg';
+import linkedInLogo from '../../assets/images/linkedin.svg';
+import whatsAppLogo from '../../assets/images/whatsapp.svg';
+import gitHubLogo from '../../assets/images/github.svg';
+
+const CONTACTS = [{
+    id: 0, iconSrc: gmailLogo, alt: 'Gmail Logo', label: 'Email',
+    value: 'taciokikuchi@gmail.com', textClass: `text-stone-100`,
+    expandedClass: `animate-fade-in-fast`
+}, {
+    id: 1, iconSrc: linkedInLogo, alt: 'LinkedIn Logo', label: 'LinkedIn',
+    value: 'linkedin.com/in/tacio-kikuchi-a2b675120',
+    textClass: `text-stone-200`, expandedClass: `animate-fade-in-mid`
+}, {
+    id: 2, iconSrc: whatsAppLogo, alt: 'WhatsApp Logo', label: 'WhatsApp',
+    value: '(91) 98173-7653', textClass: `text-stone-300`,
+    expandedClass: `animate-fade-in-mid`
+}, {
+    id: 3, iconSrc: gitHubLogo, alt: 'GitHub Logo', label: 'GitHub',
+    value: 'github.com/taciokikuchi', textClass: `text-stone-400`,
+    expandedClass: `animate-fade-in-slow`
+}];
 
 export const Contact = ({ card }: CardProps) => {
-
     const { isExpanded } = useContext(CardControlContext);
     const expanded = isExpanded(card.id);
 
-    const baseClasses = {
-        rootDiv: `text-left px-6`,
-        contactDiv: `flex flex-row gap-4 items-center`,
-        icon: `h-6 w-6`,
-        email: `text-stone-100`,
-        linkedin: `text-stone-200`,
-        whatsapp: `text-stone-300`,
-        github: `text-stone-400`,
-    }
-    const stateClasses = expanded ? {
-        rootDiv: `flex flex-col gap-5 mb-4`,
-        contactDiv: ``,
-        icon: ``,
-        email: `text-sm animate-fade-in-fast`,
-        linkedin: `text-sm animate-fade-in-fast`,
-        whatsapp: `text-sm animate-fade-in-fast`,
-        github: `text-sm animate-fade-in-fast`,
-    } : {
-        rootDiv: `grid grid-cols-2 grid-rows-2 gap-x-8
-            gap-y-8 mb-4`,
-        contactDiv: ``,
-        icon: `h-8 w-8`,
-        email: `text-xl`,
-        linkedin: `text-xl`,
-        whatsapp: `text-xl`,
-        github: `text-xl`,
-    };
-    const fullClasses = {
-        rootDiv: `${baseClasses.rootDiv} ${stateClasses.rootDiv}`,
-        contactDiv: `${baseClasses.contactDiv} ${stateClasses.contactDiv}`,
-        icon: `${baseClasses.icon} ${stateClasses.icon}`,
-        email: `${baseClasses.email} ${stateClasses.email}`,
-        linkedin: `${baseClasses.linkedin} ${stateClasses.linkedin}`,
-        whatsapp: `${baseClasses.whatsapp} ${stateClasses.whatsapp}`,
-        github: `${baseClasses.github} ${stateClasses.github}`,
-    };
-
-    const contactText = expanded ? {
-        email: `taciokikuchi@gmail.com`,
-        linkedin: `linkedin.com/in/tacio-kikuchi-a2b675120`,
-        whatsapp: `91 9 8173-7653`,
-        github: `github.com/taciokikuchi`,
-    } : {
-        email: `Email`,
-        linkedin: `LinkedIn`,
-        whatsapp: `WhatsApp`,
-        github: `GitHub`,
-    };
-
-    const ContactDiv = ({ iconSrc, fullClassesIcon, fullClassesText, altText, displayText }
-        : { iconSrc: string, fullClassesIcon: string, fullClassesText: string, altText: string, displayText: string }) => (
-        <div className={fullClasses.contactDiv}>
-            <img src={iconSrc} alt={altText} className={fullClassesIcon} />
-            <p className={fullClassesText}>{displayText}</p>
-        </div>
-    );
-
     return (
-        <div className={fullClasses.rootDiv}>
-            <ContactDiv iconSrc={gmailLogo} fullClassesIcon={fullClasses.icon}
-                fullClassesText={fullClasses.email} altText="Gmail Logo" displayText={contactText.email} />
-            <ContactDiv iconSrc={linkedInLogo} fullClassesIcon={fullClasses.icon}
-                fullClassesText={fullClasses.linkedin} altText="LinkedIn Logo" displayText={contactText.linkedin} />
-            <ContactDiv iconSrc={whatsAppLogo} fullClassesIcon={fullClasses.icon}
-                fullClassesText={fullClasses.whatsapp} altText="WhatsApp Logo" displayText={contactText.whatsapp} />
-            <ContactDiv iconSrc={gitHubLogo} fullClassesIcon={fullClasses.icon}
-                fullClassesText={fullClasses.github} altText="GitHub Logo" displayText={contactText.github} />
+        <div className={`text-left px-6 ${expanded
+            ? 'flex flex-col gap-4'
+            : 'grid grid-cols-2 grid-rows-2 gap-8 animate-fade-in-fast'}`}
+        >
+            {CONTACTS.map(({ id, iconSrc, alt, label, value, textClass,
+                expandedClass }) => (
+                <div key={id} className={`flex flex-row gap-4 items-center 
+                    ${expanded ? expandedClass : ''}`}>
+                    {expanded && <div className='h-4 w-4'>
+                        <CopyButton textToCopy={value} />
+                    </div>}
+                    <img src={iconSrc} alt={alt} className={expanded
+                        ? 'h-5 w-5' : 'h-8 w-8'} />
+                    <p className={`${textClass} ${expanded ? 'text-xs'
+                        : 'text-xl'}`}>
+                        {expanded ? value : label}
+                    </p>
+                </div>
+            ))}
+            {expanded && <p className={`text-stone-500 text-xs text-center 
+                mt-4 animate-fade-in-slow`}>Localidade: Ananindeua, Pará</p>}
         </div>
     );
-
-}
+};

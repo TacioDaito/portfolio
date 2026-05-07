@@ -12,7 +12,7 @@ export function Card({ card }: CardProps) {
 		= useContext(CardControlContext);
 	const baseClasses = `
 		flex flex-col justify-center items-center text-shadow-xs/30 text-2xl 
-		font-medium rounded-2xl transition-all duration-400 
+		font-medium rounded-2xl transition-all duration-400 px-6 py-2
 		ease aspect-[3.23/2] w-[90%] m-auto bg-surface noise relative
 	`;
 	const stateClasses = isExpanded(card.id)
@@ -32,7 +32,7 @@ export function Card({ card }: CardProps) {
 			{card.label === 'Portfólio' && <Portfolio card={card} />}
 			{card.label === 'Competências' && <Skills card={card} />}
 			{card.label === 'Contato' && <Contact card={card} />}
-			<div className={`absolute text-indigo-400 mt-55 transition-all duration-400 select-none
+			<div className={`absolute bottom-[0.5vw] text-indigo-400 transition-all duration-400 select-none
 				${isExpanded(card.id) ? 'text-xs' : 'text-base'}`}>{card.label}</div>
 		</button>
 	);
