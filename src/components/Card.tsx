@@ -10,31 +10,32 @@ export function Card({ card }: CardProps) {
 
 	const { setExpandedCard, isExpanded, isOtherCardExpanded, handleKeyPressExpand }
 		= useContext(CardControlContext);
+	const expanded = isExpanded(card.id);
 	const baseClasses = `
 		flex flex-col justify-center items-center text-shadow-xs/30 font-medium
-		rounded-3xl transition-all duration-400 px-4 py-2 aspect-[3.23/2]
-		w-[90%] m-auto bg-surface noise relative
+		rounded-3xl transition-all duration-400 aspect-[3.23/2]
+		w-[95%] m-auto bg-surface noise relative
 	`;
-	const stateClasses = isExpanded(card.id)
-		? `shadow-lg/100 shadow-glow-lg scale-[zoom:2.11] ${card.transformOrigin} z-50`
+	const stateClasses = expanded
+		? `shadow-lg/100 shadow-glow-lg scale-206 ${card.transformOrigin} z-50`
 		: isOtherCardExpanded(card.id) ? `pointer-events-none animate-fade-out`
-		: `shadow-bottom-sm/40 hover:scale-[1.02] hover:border-primary-700
+		: `shadow-bottom-sm/40 hover:scale-102 hover:border-primary-700
 		hover:shadow-glow-lg animate-fade-in-slow cursor-pointer`;
 
 	return (
-		<button
+		<div
 			onClick={() => setExpandedCard(card.id)} className={`${baseClasses} ${stateClasses}`}
 			tabIndex={0} onKeyDown={(event) => handleKeyPressExpand(event, card.id)}
-			aria-label={`${isExpanded(card.id) ? 'Expanded' : 'Open'} ${card.label} section`}
-			role={isExpanded(card.id) ? 'dialog' : undefined} aria-modal={isExpanded(card.id)}
+			aria-label={`${expanded ? 'Expanded' : 'Open'} ${card.label} section`}
+			role={expanded ? 'dialog' : 'button'} aria-modal={expanded}
 		>
 			{card.label === 'Sobre Mim' && <AboutMe card={card} />}
 			{card.label === 'Portfólio' && <Portfolio card={card} />}
 			{card.label === 'Competências' && <Skills card={card} />}
 			{card.label === 'Contato' && <Contact card={card} />}
 			<div className={`absolute bottom-[0.5vw] text-indigo-400 transition-all font-saira
-			duration-400 ${isExpanded(card.id) ? 'text-xs' : 'text-base'}`}>{card.label}</div>
-		</button>
+			duration-400 ${expanded ? 'text-xs' : 'text-base'}`}>{card.label}</div>
+		</div>
 	);
 
 }

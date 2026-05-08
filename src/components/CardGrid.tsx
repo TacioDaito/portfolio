@@ -19,7 +19,7 @@ export const CardGrid = () => {
 					<div
 						className='grid grid-cols-2 grid-rows-2 items-center 
 							rounded-3xl aspect-[3.23/2] w-[50vw] bg-surface
-							noise shadow-xl/20 animate-fade-in-fast px-8 py-4'
+							noise shadow-xl/20 animate-fade-in-fast'
 					>
 						<>
 							{CARDS.map((card) => (

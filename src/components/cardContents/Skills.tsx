@@ -1,7 +1,7 @@
-import { useContext } from "react";
-import { CardControlContext } from "../../hooks/useCardControl";
-import { CardProps } from "../../constants/cards";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+import { useContext } from 'react';
+import { CardControlContext } from '../../hooks/useCardControl';
+import { CardProps } from '../../constants/cards';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import phpLogo from '../../assets/images/php.svg'
 import vueLogo from '../../assets/images/vue.svg'
 import reactLogo from '../../assets/images/react.svg'
@@ -28,9 +28,9 @@ export const Skills = ({ card }: CardProps) => {
     const expanded = isExpanded(card.id);
 
     const classes = {
-        grid: `grid justify-items-center items-center w-full px-4 mb-2 ${expanded
-            ? 'grid-cols-6 grid-rows-3 gap-y-4' : `grid-cols-3 grid-rows-2 gap-y-8 px-12
-            animate-fade-in-fast`}`,
+        grid: `grid justify-items-center items-center w-full mb-2 ${expanded
+            ? 'grid-cols-6 grid-rows-3 gap-y-4 px-10' : `grid-cols-4 grid-rows-2 gap-y-8
+            animate-fade-in-fast p-16`}`,
         logo: `drop-shadow-sm/50 group-hover:drop-shadow-sm/100 group-hover:drop-shadow-indigo-600
             transition-all duration-300 ${expanded ? 'h-7' : 'h-12'}`,
         div: expanded ? `gap-2 flex flex-col gap-1 items-center animate-fade-in-fast 
@@ -66,15 +66,19 @@ export const Skills = ({ card }: CardProps) => {
         <div className={classes.grid}>
             {!expanded
                 ? <>
-                    {skills.slice(0, 5).map(skill => <img key={skill.alt}
+                    {skills.slice(0, 7).map(skill => <img key={skill.alt}
                         src={skill.src} alt={skill.alt} className={classes.logo} />)}
-                    <p className="text-4xl text-stone-200">+13</p>
+                    <p className='text-xl'><span className='text-stone-100'>+</span>
+                        <span className='text-stone-200'>1</span>
+                        <span className='text-stone-300'>3</span>
+                        <span className='text-stone-400'>!</span>
+                    </p>
                 </>
                 : <>
                     {skills.map(skill => (
                         <div key={skill.alt} className={classes.div}>
                             <img src={skill.src} alt={skill.alt} className={classes.logo} />
-                            <span className="relative flex flex-col items-center w-[110%]">
+                            <span className='relative flex flex-col items-center w-[110%]'>
                                 <span className={classes.labelA}>{skill.alt}</span>
                                 <span className={classes.labelB}>{skill.labelB}</span>
                             </span>
@@ -82,19 +86,19 @@ export const Skills = ({ card }: CardProps) => {
                     ))}
                     <Tooltip>
                         <TooltipTrigger>
-                            <div className={classes.div}><img src={ellipsisLogo} alt="Outros" className={classes.logo} />
-                                <span className="text-stone-200">Outros</span>
+                            <div className={classes.div}><img src={ellipsisLogo} alt='Outros' className={classes.logo} />
+                                <span className='text-stone-200'>Outros</span>
                             </div>
                         </TooltipTrigger>
-                        <TooltipContent className="flex flex-col text-sm shadow-lg/50 items-start">
-                            <span className="text-stone-200">• SOLID, DRY, KISS, YAGNI</span>
-                            <span className="text-stone-200">• Arquitetura Monolítica Modular</span>
-                            <span className="text-stone-200">• Arquitetura de Microserviços</span>
-                            <span className="text-stone-200">• Domain-Driven Design (DDD)</span>
-                            <span className="text-stone-200">• Test-Driven Design (TDD)</span>
-                            <span className="text-stone-200">• Student Information Systems (SIS)</span>
-                            <span className="text-stone-200">• Software as a Service (SaaS)</span>
-                            <span className="text-stone-200">• Infraestrutura de Nuvem</span>
+                        <TooltipContent className='flex flex-col text-sm shadow-lg/50 items-start'>
+                            <span className='text-stone-200'>• SOLID, DRY, KISS, YAGNI</span>
+                            <span className='text-stone-200'>• Arquitetura Monolítica Modular</span>
+                            <span className='text-stone-200'>• Arquitetura de Microserviços</span>
+                            <span className='text-stone-200'>• Domain-Driven Design (DDD)</span>
+                            <span className='text-stone-200'>• Test-Driven Design (TDD)</span>
+                            <span className='text-stone-200'>• Student Information Systems (SIS)</span>
+                            <span className='text-stone-200'>• Software as a Service (SaaS)</span>
+                            <span className='text-stone-200'>• Infraestrutura de Nuvem</span>
                         </TooltipContent>
                     </Tooltip>
                 </>

@@ -14,10 +14,10 @@ const CONTACTS = [{
 }, {
     id: 1, iconSrc: linkedInLogo, alt: `LinkedIn Logo`, label: `LinkedIn`,
     value: `linkedin.com/in/tacio-kikuchi-a2b675120`,
-    textClass: `text-stone-200`, expandedClass: `animate-fade-in-mid`
+    textClass: `text-stone-300`, expandedClass: `animate-fade-in-mid`
 }, {
     id: 2, iconSrc: whatsAppLogo, alt: `WhatsApp Logo`, label: `WhatsApp`,
-    value: `(91) 98173-7653`, textClass: `text-stone-300`,
+    value: `(91) 98173-7653`, textClass: `text-stone-200`,
     expandedClass: `animate-fade-in-mid`
 }, {
     id: 3, iconSrc: gitHubLogo, alt: `GitHub Logo`, label: `GitHub`,
@@ -30,7 +30,7 @@ export const Contact = ({ card }: CardProps) => {
     const expanded = isExpanded(card.id);
 
     return (
-        <div className={`text-left px-6 ${expanded
+        <div className={`text-left mb-2 ${expanded
             ? `flex flex-col gap-4` : `grid grid-cols-2 grid-rows-2 gap-8 
             animate-fade-in-fast`}`}
         >
@@ -49,7 +49,7 @@ export const Contact = ({ card }: CardProps) => {
                     </p>
                 </div>
             ))}
-            {expanded && <p className={`text-stone-500 text-xs text-center 
+            {expanded && <p className={`text-stone-400 text-xs text-center 
                 mt-4 animate-fade-in-slow`}>Localizado em Ananindeua, Pará</p>}
         </div>
     );
