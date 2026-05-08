@@ -28,7 +28,7 @@ export const Skills = ({ card }: CardProps) => {
     const expanded = isExpanded(card.id);
 
     const classes = {
-        grid: `grid justify-items-center items-center w-full px-4 mb-2 ${expanded
+        grid: `grid justify-items-center items-center w-full px-4 mb-2 select-none ${expanded
             ? 'grid-cols-6 grid-rows-3 gap-y-4' : `grid-cols-3 grid-rows-2 gap-y-8 px-12
             animate-fade-in-fast`}`,
         logo: `drop-shadow-sm/50 group-hover:drop-shadow-sm/100 group-hover:drop-shadow-indigo-600

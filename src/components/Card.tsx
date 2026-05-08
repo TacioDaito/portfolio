@@ -11,15 +11,15 @@ export function Card({ card }: CardProps) {
 	const { setExpandedCard, isExpanded, isOtherCardExpanded, handleKeyPressExpand }
 		= useContext(CardControlContext);
 	const baseClasses = `
-		flex flex-col justify-center items-center text-shadow-xs/30 text-2xl 
-		font-medium rounded-2xl transition-all duration-400 px-6 py-2
-		ease aspect-[3.23/2] w-[90%] m-auto bg-surface noise relative
+		flex flex-col justify-center items-center text-shadow-xs/30 font-medium
+		rounded-3xl transition-all duration-400 px-6 py-2 aspect-[3.23/2]
+		w-[90%] m-auto bg-surface noise relative select-none
 	`;
 	const stateClasses = isExpanded(card.id)
-		? `shadow-lg/100 shadow-glow-lg scale-211 ${card.transformOrigin} z-50`
-		: isOtherCardExpanded(card.id) ? `pointer-events-none animate-fade-out-fast`
-			: `shadow-bottom-sm hover:scale-[1.02] hover:border-primary-700
-		hover:shadow-glow-lg animate-fade-in-fast cursor-pointer`;
+		? `shadow-lg/100 shadow-glow-lg scale-211 zoom-211 ${card.transformOrigin} z-50`
+		: isOtherCardExpanded(card.id) ? `pointer-events-none animate-fade-out`
+		: `shadow-bottom-sm hover:scale-[1.02] hover:border-primary-700
+		hover:shadow-glow-lg animate-fade-in-slow cursor-pointer`;
 
 	return (
 		<button

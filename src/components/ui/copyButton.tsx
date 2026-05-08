@@ -36,7 +36,7 @@ export const CopyButton = ({ textToCopy }: { textToCopy: string }) => {
                 </button>
             </TooltipTrigger>
             <TooltipContent>
-                <p>{copied ? 'Copiado!' : 'Copiar'}</p>
+                <p className='select-none'>{copied ? 'Copiado!' : 'Copiar'}</p>
             </TooltipContent>
         </Tooltip>
     );
