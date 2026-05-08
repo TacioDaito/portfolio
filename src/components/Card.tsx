@@ -17,10 +17,10 @@ export function Card({ card }: CardProps) {
 		w-[95%] m-auto bg-surface noise relative
 	`;
 	const stateClasses = expanded
-		? `shadow-lg/100 shadow-glow-lg scale-206 ${card.transformOrigin} z-50`
+		? `shadow-lg/100 shadow-glow-lg scale-205 ${card.transformOrigin} z-50`
 		: isOtherCardExpanded(card.id) ? `pointer-events-none animate-fade-out`
 		: `shadow-bottom-sm/40 hover:scale-102 hover:border-primary-700
-		hover:shadow-glow-lg animate-fade-in-slow cursor-pointer`;
+		hover:shadow-glow-lg animate-fade-in-mid cursor-pointer`;
 
 	return (
 		<div
@@ -34,7 +34,7 @@ export function Card({ card }: CardProps) {
 			{card.label === 'Competências' && <Skills card={card} />}
 			{card.label === 'Contato' && <Contact card={card} />}
 			<div className={`absolute bottom-[0.5vw] text-indigo-400 transition-all font-saira
-			duration-400 ${expanded ? 'text-xs' : 'text-base'}`}>{card.label}</div>
+			duration-400 ${expanded ? 'text-[0.625rem]' : 'text-base'}`}>{card.label}</div>
 		</div>
 	);
 

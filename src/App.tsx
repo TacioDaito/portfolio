@@ -4,7 +4,7 @@ import RootLayout from './layout'
 function App() {
 	return (
 		<RootLayout>
-			<div className='bg-dark-950 bg-overlay noise h-screen w-screen flex items-center justify-center'>
+			<div className='bg-dark-900 bg-overlay noise h-screen w-screen flex items-center justify-center'>
 				<CardGrid />
 			</div>
 		</RootLayout>

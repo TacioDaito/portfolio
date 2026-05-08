@@ -171,7 +171,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
 
 function CarouselPrevious({
   className,
-  variant = "outline",
+  variant = "link",
   size = "icon-sm",
   ...props
 }: React.ComponentProps<typeof Button>) {
@@ -185,16 +185,15 @@ function CarouselPrevious({
       className={cn(
         "absolute touch-manipulation rounded-full",
         orientation === "horizontal"
-          ? "top-1/2 -left-12 -translate-y-1/2"
+          ? "-left-12 top-[calc(50%-16px)]"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
-      onPointerDown={(e) => e.stopPropagation()}
       {...props}
     >
-      <ChevronLeftIcon />
+      <ChevronLeftIcon className="scale-200" />
       <span className="sr-only">Previous slide</span>
     </Button>
   )
@@ -202,7 +201,7 @@ function CarouselPrevious({
 
 function CarouselNext({
   className,
-  variant = "outline",
+  variant = "link",
   size = "icon-sm",
   ...props
 }: React.ComponentProps<typeof Button>) {
@@ -216,16 +215,15 @@ function CarouselNext({
       className={cn(
         "absolute touch-manipulation rounded-full",
         orientation === "horizontal"
-          ? "top-1/2 -right-12 -translate-y-1/2"
+          ? "-right-12 top-[calc(50%-16px)]"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
-      onPointerDown={(e) => e.stopPropagation()}
       {...props}
     >
-      <ChevronRightIcon />
+      <ChevronRightIcon className="scale-200" />
       <span className="sr-only">Next slide</span>
     </Button>
   )

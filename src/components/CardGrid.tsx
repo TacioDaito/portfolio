@@ -1,7 +1,7 @@
-import OutsideClickHandler from 'react-outside-click-handler'
 import { useCardControl, CardControlContext } from '../hooks/useCardControl'
 import { CARDS } from '@/constants/cards'
 import { Card } from './Card'
+import { DismissableLayer } from '@radix-ui/react-dismissable-layer'
 
 export const CardGrid = () => {
 	const { expandedCard, setExpandedCard, isExpanded, isOtherCardExpanded,
@@ -14,7 +14,7 @@ export const CardGrid = () => {
 				handleKeyPressExpand
 			}}
 		>
-			<OutsideClickHandler onOutsideClick={() => setExpandedCard(null)}>
+			<DismissableLayer onInteractOutside={() => setExpandedCard(null)}>
 				<div className='flex items-center justify-center w-full h-full'>
 					<div
 						className='grid grid-cols-2 grid-rows-2 items-center 
@@ -30,7 +30,7 @@ export const CardGrid = () => {
 						</>
 					</div>
 				</div>
-			</OutsideClickHandler>
+			</DismissableLayer>
 		</CardControlContext.Provider>
 	)
 }
