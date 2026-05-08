@@ -29,7 +29,7 @@ export const CopyButton = ({ textToCopy }: { textToCopy: string }) => {
                     onMouseLeave={() => !copied && setTooltipVisible(false)}
                     onClick={handleCopy} className={`cursor-pointer
                     flex flex-row justify-center items-center
-                    bg-stone-300 rounded-[20%] hover:scale-104
+                    bg-stone-300 rounded-[20%] hover:scale-110
                     transition-all duration-200
                     active:bg-stone-400`} >
                     <img src={copyIcon} alt="Copy Icon" />

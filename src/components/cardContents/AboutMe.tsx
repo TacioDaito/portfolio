@@ -9,7 +9,7 @@ export const AboutMe = ({ card }: CardProps) => {
     const expanded = isExpanded(card.id);
 
     return (
-        <div className={`flex flex-row items-center gap-8 select-none
+        <div className={`flex flex-row  gap-8
             ${expanded ? 'animate-fade-in-fast' : ''}`}>
             <div className={`flex flex-col text-left
                 ${expanded ? 'text-xl' : 'text-4xl gap-2'}`}>
@@ -19,9 +19,9 @@ export const AboutMe = ({ card }: CardProps) => {
                 {expanded && <div>
                     <p className="text-base text-stone-300 animate-fade-in-mid">
                         Engenheiro da Computação</p>
-                    <p className="text-sm mt-4 mb-0.5 text-stone-400 animate-fade-in-mid">
+                    <p className="text-xs mt-6 mb-0.5 text-stone-400 animate-fade-in-mid">
                         +3 Anos de Experiência</p>
-                    <p className="text-sm text-stone-500 animate-fade-in-slow">
+                    <p className="text-xs text-stone-500 animate-fade-in-slow">
                         Cordial, Proativo, Paraense! </p>
                 </div>}
             </div>

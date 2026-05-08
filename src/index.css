@@ -7,6 +7,7 @@
 
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-saira: 'Saira';
 
   --color-primary-50: #f0f4ff;
   --color-primary-100: #d1e0ff;
@@ -53,6 +54,14 @@
 @font-face {
   font-family: 'Inter';
   src: url('assets/fonts/Inter-Regular.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+
+}
+@font-face {
+  font-family: 'Saira';
+  src: url('assets/fonts/Saira-VariableFont.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -186,7 +195,7 @@
 :root {
   --background: oklch(1 0 0);
 
-  --foreground: oklch(0.145 0 0);
+  --foreground: oklch(17.818% 0.02316 249.187 / 0.945);
 
   --card: oklch(1 0 0);
 

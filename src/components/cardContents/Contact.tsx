@@ -32,7 +32,7 @@ export const Contact = ({ card }: CardProps) => {
     return (
         <div className={`text-left px-6 ${expanded
             ? `flex flex-col gap-4` : `grid grid-cols-2 grid-rows-2 gap-8 
-            select-none animate-fade-in-fast`}`}
+            animate-fade-in-fast`}`}
         >
             {CONTACTS.map(({ id, iconSrc, alt, label, value, textClass,
                 expandedClass }) => (
@@ -50,7 +50,7 @@ export const Contact = ({ card }: CardProps) => {
                 </div>
             ))}
             {expanded && <p className={`text-stone-500 text-xs text-center 
-                mt-4 animate-fade-in-slow`}>Localidade: Ananindeua, Pará</p>}
+                mt-4 animate-fade-in-slow`}>Localizado em Ananindeua, Pará</p>}
         </div>
     );
 };

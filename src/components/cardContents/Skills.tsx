@@ -28,7 +28,7 @@ export const Skills = ({ card }: CardProps) => {
     const expanded = isExpanded(card.id);
 
     const classes = {
-        grid: `grid justify-items-center items-center w-full px-4 mb-2 select-none ${expanded
+        grid: `grid justify-items-center items-center w-full px-4 mb-2 ${expanded
             ? 'grid-cols-6 grid-rows-3 gap-y-4' : `grid-cols-3 grid-rows-2 gap-y-8 px-12
             animate-fade-in-fast`}`,
         logo: `drop-shadow-sm/50 group-hover:drop-shadow-sm/100 group-hover:drop-shadow-indigo-600
@@ -74,7 +74,7 @@ export const Skills = ({ card }: CardProps) => {
                     {skills.map(skill => (
                         <div key={skill.alt} className={classes.div}>
                             <img src={skill.src} alt={skill.alt} className={classes.logo} />
-                            <span className="relative flex flex-col items-center w-full">
+                            <span className="relative flex flex-col items-center w-[110%]">
                                 <span className={classes.labelA}>{skill.alt}</span>
                                 <span className={classes.labelB}>{skill.labelB}</span>
                             </span>
@@ -86,8 +86,7 @@ export const Skills = ({ card }: CardProps) => {
                                 <span className="text-stone-200">Outros</span>
                             </div>
                         </TooltipTrigger>
-                        <TooltipContent className="flex flex-col text-sm shadow-lg/50 items-start
-                            select-none">
+                        <TooltipContent className="flex flex-col text-sm shadow-lg/50 items-start">
                             <span className="text-stone-200">• SOLID, DRY, KISS, YAGNI</span>
                             <span className="text-stone-200">• Arquitetura Monolítica Modular</span>
                             <span className="text-stone-200">• Arquitetura de Microserviços</span>

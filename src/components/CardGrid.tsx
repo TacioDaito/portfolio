@@ -18,8 +18,8 @@ export const CardGrid = () => {
 				<div className='flex items-center justify-center w-full h-full'>
 					<div
 						className='grid grid-cols-2 grid-rows-2 items-center 
-							rounded-3xl aspect-[3.23/2] w-[55vw] bg-surface
-							noise shadow-xl/20 animate-fade-in-fast'
+							rounded-3xl aspect-[3.23/2] w-[50vw] bg-surface
+							noise shadow-xl/20 animate-fade-in-fast px-8 py-4'
 					>
 						<>
 							{CARDS.map((card) => (
