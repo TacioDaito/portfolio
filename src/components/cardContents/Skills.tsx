@@ -2,24 +2,32 @@ import { useContext } from 'react';
 import { CardControlContext } from '../../hooks/useCardControl';
 import { CardProps } from '../../constants/cards';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-import phpLogo from '../../assets/images/php.svg'
-import vueLogo from '../../assets/images/vue.svg'
-import reactLogo from '../../assets/images/react.svg'
-import dockerLogo from '../../assets/images/docker.svg'
-import postgresLogo from '../../assets/images/postgres.svg'
-import mariaDbLogo from '../../assets/images/mariadb.svg'
-import laravelLogo from '../../assets/images/laravel.svg'
-import mongoLogo from '../../assets/images/mongo.svg'
-import nextjsLogo from '../../assets/images/nextjs.svg'
-import mySqlLogo from '../../assets/images/mysql.svg'
-import gitLogo from '../../assets/images/git.svg'
-import tailwindLogo from '../../assets/images/tailwind.svg'
-import javaScriptLogo from '../../assets/images/javascript.svg'
-import awsLogo from '../../assets/images/aws.svg'
-import typeScriptLogo from '../../assets/images/typescript.svg'
-import redisLogo from '../../assets/images/redis.svg'
-import n8nLogo from '../../assets/images/n8n.svg'
-import ellipsisLogo from '../../assets/images/ellipsis.svg'
+const logos = import.meta.glob('../../assets/images/*.svg', {
+    eager: true,
+    import: 'default'
+}) as Record<string, string>
+
+const logo = (name: string) => logos[`../../assets/images/${name}.svg`]
+
+const skills = [
+    { src: logo('php'), labelA: 'PHP', labelB: '+3 Anos' },
+    { src: logo('laravel'), labelA: 'Laravel', labelB: '+2 Anos' },
+    { src: logo('javascript'), labelA: 'JavaScript', labelB: '+3 Anos' },
+    { src: logo('vue'), labelA: 'Vue.js', labelB: '+2 Anos' },
+    { src: logo('react'), labelA: 'React.js', labelB: '< 1 Ano' },
+    { src: logo('nextjs'), labelA: 'Next.js', labelB: '< 1 Ano' },
+    { src: logo('typescript'), labelA: 'TypeScript', labelB: '< 1 Ano' },
+    { src: logo('mariadb'), labelA: 'MariaDB', labelB: '+3 Anos' },
+    { src: logo('mysql'), labelA: 'MySQL', labelB: '+3 Anos' },
+    { src: logo('postgres'), labelA: 'PostgreSQL', labelB: '+3 Anos' },
+    { src: logo('mongo'), labelA: 'MongoDB', labelB: '< 1 Ano' },
+    { src: logo('redis'), labelA: 'Redis', labelB: '< 1 Ano' },
+    { src: logo('git'), labelA: 'Git', labelB: '+5 Anos' },
+    { src: logo('docker'), labelA: 'Docker', labelB: '+1 Ano' },
+    { src: logo('n8n'), labelA: 'n8n', labelB: '< 1 Ano' },
+    { src: logo('aws'), labelA: 'AWS', labelB: '< 1 Ano' },
+    { src: logo('tailwind'), labelA: 'Tailwind CSS', labelB: '+2 Anos' },
+]
 
 export const Skills = ({ card }: CardProps) => {
 
@@ -42,32 +50,12 @@ export const Skills = ({ card }: CardProps) => {
             text-indigo-200` : `hidden`,
     };
 
-    const skills = [
-        { src: phpLogo, alt: 'PHP', labelB: '+3 Anos' },
-        { src: laravelLogo, alt: 'Laravel', labelB: '+2 Anos' },
-        { src: javaScriptLogo, alt: 'JavaScript', labelB: '+3 Anos' },
-        { src: vueLogo, alt: 'Vue.js', labelB: '+2 Anos' },
-        { src: reactLogo, alt: 'React.js', labelB: '< 1 Ano' },
-        { src: nextjsLogo, alt: 'Next.js', labelB: '< 1 Ano' },
-        { src: typeScriptLogo, alt: 'TypeScript', labelB: '< 1 Ano' },
-        { src: mariaDbLogo, alt: 'MariaDB', labelB: '+3 Anos' },
-        { src: mySqlLogo, alt: 'MySQL', labelB: '+3 Anos' },
-        { src: postgresLogo, alt: 'PostgreSQL', labelB: '+3 Anos' },
-        { src: mongoLogo, alt: 'MongoDB', labelB: '< 1 Ano' },
-        { src: redisLogo, alt: 'Redis', labelB: '< 1 Ano' },
-        { src: gitLogo, alt: 'Git', labelB: '+5 Anos' },
-        { src: dockerLogo, alt: 'Docker', labelB: '+1 Ano' },
-        { src: n8nLogo, alt: 'n8n', labelB: '< 1 Ano' },
-        { src: awsLogo, alt: 'AWS', labelB: '< 1 Ano' },
-        { src: tailwindLogo, alt: 'Tailwind CSS', labelB: '+2 Anos' }
-    ];
-
     return (
         <div className={classes.grid}>
             {!expanded
                 ? <>
-                    {skills.slice(0, 7).map(skill => <img key={skill.alt}
-                        src={skill.src} alt={skill.alt} className={classes.logo} />)}
+                    {skills.slice(0, 7).map(skill => <img key={skill.labelA}
+                        src={skill.src} alt={skill.labelA} className={classes.logo} />)}
                     <p className='text-xl'><span className='text-stone-100'>+</span>
                         <span className='text-stone-200'>1</span>
                         <span className='text-stone-300'>3</span>
@@ -76,17 +64,18 @@ export const Skills = ({ card }: CardProps) => {
                 </>
                 : <>
                     {skills.map(skill => (
-                        <div key={skill.alt} className={classes.div}>
-                            <img src={skill.src} alt={skill.alt} className={classes.logo} />
+                        <div key={skill.labelA} className={classes.div}>
+                            <img src={skill.src} alt={skill.labelA} className={classes.logo} />
                             <span className='relative flex flex-col items-center'>
-                                <span className={classes.labelA}>{skill.alt}</span>
+                                <span className={classes.labelA}>{skill.labelA}</span>
                                 <span className={classes.labelB}>{skill.labelB}</span>
                             </span>
                         </div>
                     ))}
                     <Tooltip>
                         <TooltipTrigger>
-                            <div className={classes.div}><img src={ellipsisLogo} alt='Outros' className={classes.logo} />
+                            <div className={classes.div}><img src={logo('ellipsis')} alt='Outros'
+                                className={classes.logo} />
                                 <span className='text-stone-200'>Outros</span>
                             </div>
                         </TooltipTrigger>

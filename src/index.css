@@ -333,3 +333,7 @@
     @apply font-sans;
   }
 }
+
+[data-resizing='true'] * {
+  transition: none !important;
+}

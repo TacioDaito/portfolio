@@ -53,9 +53,9 @@ export const Portfolio = ({ card }: CardProps) => {
                     ))}
                 </CarouselContent>
                 {expanded && <CarouselPrevious className='text-stone-200 w-35 active:-translate-x-2
-                    animate-fade-in-mid' />}
+                    animate-fade-in-mid cursor-pointer' />}
                 {expanded && <CarouselNext className='text-stone-200 w-35 active:translate-x-2
-                    animate-fade-in-mid' />}
+                    animate-fade-in-mid cursor-pointer' />}
             </Carousel>
         </div>
     );

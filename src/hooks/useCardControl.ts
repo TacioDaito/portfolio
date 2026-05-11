@@ -23,7 +23,7 @@ export const CardControlContext = createContext<CardControlContextProps>({
 	handleKeyPressExpand: () => { throw new Error('handleKeyPressExpand called outside CardControlProvider'); },
 });
 
-export const useCardControl = () => {
+	export const useCardControl = () => {
 
 	const [expandedCard, setExpandedCard] = useState<CardId | null>(null);
 	const isExpanded = (cardId: CardId) => expandedCard === cardId;
@@ -44,6 +44,24 @@ export const useCardControl = () => {
 		window.addEventListener('keydown', handleKeyPressEscape);
 		return () => window.removeEventListener('keydown', handleKeyPressEscape);
 	});
+
+	useEffect(() => {
+		let timeout: ReturnType<typeof setTimeout>
+
+		const handleResize = () => {
+			document.body.dataset.resizing = 'true'
+			clearTimeout(timeout)
+			timeout = setTimeout(() => {
+				delete document.body.dataset.resizing
+			}, 100)
+		}
+
+		window.addEventListener('resize', handleResize)
+		return () => {
+			window.removeEventListener('resize', handleResize)
+			clearTimeout(timeout)
+		}
+	}, [])
 
 	return {
 		expandedCard,
