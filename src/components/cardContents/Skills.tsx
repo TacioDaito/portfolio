@@ -36,13 +36,18 @@ export const Skills = ({ card }: CardProps) => {
     const expanded = isExpanded(card.id);
 
     const classes = {
-        grid: `grid justify-items-center items-center w-full mb-2 ${expanded
-            ? 'grid-cols-6 grid-rows-3 gap-y-4 px-10' : `grid-cols-4 grid-rows-2 gap-y-8
-            animate-fade-in-fast p-16`}`,
-        logo: `drop-shadow-sm/50 group-hover:drop-shadow-sm/100 group-hover:drop-shadow-indigo-600
-            transition-all duration-300 ${expanded ? 'h-7' : 'h-12'}`,
-        div: expanded ? `gap-2 flex flex-col gap-1 items-center animate-fade-in-fast 
-            group text-[0.6rem] font-normal` : `hidden`,
+        grid: `grid justify-items-center items-center w-full max-h-full 
+            ${expanded
+                ? `grid-cols-3 grid-rows-6 md:grid-cols-6 md:grid-rows-3 gap-y-1 sm:gap-y-3 
+                    px-2 pb-2 sm:px-4 sm:pb-4`
+                : `grid-cols-2 grid-rows-4 md:grid-cols-4 md:grid-rows-2 gap-y-4 sm:gap-y-8 
+                    px-4 pb-4 sm:px-8 sm:pb-8 animate-fade-in-fast`
+            }`,
+        logo: `drop-shadow-md/40 group-hover:drop-shadow-sm/100 group-hover:drop-shadow-indigo-600
+            transition-all duration-300
+            ${expanded ? 'h-4 sm:h-7' : 'h-7 sm:h-12'}`,
+        div: expanded ? `flex flex-col gap-1 items-center animate-fade-in-fast 
+            group text-xxxxs sm:text-xxs font-normal` : `hidden`,
         labelA: expanded ? `relative transition-all duration-400 ease-in-out w-max
             group-hover:-translate-y-full group-hover:opacity-0 text-stone-300` : `hidden`,
         labelB: expanded ? `absolute translate-y-full opacity-0 transition-all w-max

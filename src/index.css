@@ -9,6 +9,10 @@
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-saira: 'Saira';
 
+  --text-xxs: 0.625rem;
+  --text-xxxs: 0.5rem;
+  --text-xxxxs: 0.375rem;
+
   --color-primary-50: #f0f4ff;
   --color-primary-100: #d1e0ff;
   --color-primary-200: #a3c7ff;

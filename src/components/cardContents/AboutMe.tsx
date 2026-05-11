@@ -9,31 +9,34 @@ export const AboutMe = ({ card }: CardProps) => {
     const expanded = isExpanded(card.id);
 
     return (
-        <div className='flex flex-row gap-16 items-center'>
-            <div className={`flex flex-col text-left ${expanded ? 'gap-1' : 'gap-2'}`}>
-                <p className={`text-stone-100 ${expanded ? 'text-3xl' :
-                    'text-5xl'}`}>Tacio Kikuchi</p>
+        <div className='flex flex-col md:flex-row gap-4 sm:gap-8 md:gap-16 items-center justify-center'>
+            <div className={`flex flex-col text-center md:text-left
+                ${expanded ? 'gap-1 sm:gap-2' : 'gap-2 sm:gap-4'}`}>
+                <p className={`text-stone-100 ${expanded ? 'text-lg sm:text-3xl' :
+                    'text-3xl sm:text-5xl'}`}>Tacio Kikuchi</p>
                 {expanded
-                    ? <p className='text-stone-200 text-xs animate-fade-in-fast'>
+                    ? <p className='text-stone-200 -mt-0.5 text-xxxs sm:mt-0 sm:text-xs
+                        animate-fade-in-fast'>
                         Desenvolvedor Full Stack</p>
-                    : <p className='text-xl'><span className='text-stone-200'>Dev. </span>
+                    : <p className='text-xs sm:text-xl'>
+                        <span className='text-stone-200'>Dev. </span>
                         <span className='text-stone-300'>Full </span>
                         <span className='text-stone-400'>Stack</span>
                     </p>
                 }
-                {expanded && <div>
-                    <p className='text-xs text-stone-300 animate-fade-in-mid'>
+                {expanded && <div className='text-xxxs sm:text-xs flex flex-col gap-1 sm:gap-2'>
+                    <p className='text-stone-300 animate-fade-in-mid'>
                         Engenheiro da Computação</p>
-                    <p className='text-xs font-normal mt-6 mb-0.5 text-stone-300 animate-fade-in-mid'>
+                    <p className='font-normal mt-2 sm:mt-4 text-stone-300 animate-fade-in-mid'>
                         +3 Anos de Experiência</p>
-                    <p className='text-xs font-normal text-stone-400 animate-fade-in-slow'>
+                    <p className='font-normal text-stone-400 animate-fade-in-slow'>
                         Cordial, Proativo, Paraense! </p>
                 </div>}
             </div>
             {expanded && <img src={photo} alt='Foto'
-                className='aspect-3/4 object-cover h-35 rounded-2xl
-                noise-overlay shadow-xs/70 animate-fade-in-slow hover:scale-120
-                transition-all duration-300' />}
+                className='aspect-3/4 object-cover h-18 sm:h-32 md:h-35 rounded-lg sm:rounded-2xl
+                noise-overlay shadow-xs/70 animate-fade-in-slow hover:scale-120 hover:transition-all
+                duration-300' />}
         </div>
     );
 

@@ -40,21 +40,21 @@ export const Portfolio = ({ card }: CardProps) => {
                     {PORTFOLIOS.map((portfolio) => (
                         <CarouselItem key={portfolio.id} className='flex flex-row justify-center 
                             items-center hover:scale-103 transition-all duration-300'>
-                            <img src={portfolio.imgSrc} alt={portfolio.alt} className='rounded-2xl 
-                                w-[65%] shadow-md/30' />
+                            <img src={portfolio.imgSrc} alt={portfolio.alt} className='rounded-lg 
+                                sm:rounded-2xl w-[85%] md:w-[65%] shadow-md/40' />
                             {expanded && <>
-                                <a href={portfolio.link} target='_blank' className='absolute w-[65%]
-                                    h-full rounded-2xl'></a>
+                                <a href={portfolio.link} target='_blank' className='absolute
+                                w-[85%] md:w-[65%] h-full rounded-2xl'></a>
                                 <p className='absolute px-1 bg-stone-900/60 font-normal
-                                    rounded-xs bottom-1 w-max text-[0.6rem] text-stone-300 
+                                    rounded-xs bottom-1 w-max text-xxxxs sm:text-xxs text-stone-300 
                                     animate-fade-in-mid'>{portfolio.title}</p>
                             </>}
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                {expanded && <CarouselPrevious className='text-stone-200 w-35 active:-translate-x-2
+                {expanded && <CarouselPrevious className='hidden md:inline-flex text-stone-200 w-35 active:-translate-x-2
                     animate-fade-in-mid cursor-pointer' />}
-                {expanded && <CarouselNext className='text-stone-200 w-35 active:translate-x-2
+                {expanded && <CarouselNext className='hidden md:inline-flex text-stone-200 w-35 active:translate-x-2
                     animate-fade-in-mid cursor-pointer' />}
             </Carousel>
         </div>

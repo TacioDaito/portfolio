@@ -6,7 +6,7 @@ import { Skills } from './cardContents/Skills';
 import { Portfolio } from './cardContents/Portfolio';
 import { Contact } from './cardContents/Contact';
 
-const cardContentMap = {
+const CardContents = {
 	'Sobre Mim': AboutMe, 'Portfólio': Portfolio,
 	'Competências': Skills, 'Contato': Contact
 };
@@ -16,14 +16,14 @@ export function Card({ card }: CardProps) {
 	const { setExpandedCard, isExpanded, isOtherCardExpanded, handleKeyPressExpand }
 	= useContext(CardControlContext);
 	const expanded = isExpanded(card.id);
+	const CardContent = CardContents[card.label];
 
-	const classes = `flex flex-col justify-center items-center text-shadow-xs/30 font-medium 
-	rounded-3xl transition-[width, height] duration-400 aspect-[2/3.23] md:aspect-[3.23/2]
-	w-[95%] m-auto bg-surface noise relative
-		${expanded ? `shadow-lg/100 shadow-glow-lg scale-205 ${card.transformOrigin} z-50`
+	const classes = `flex flex-col justify-center items-center text-shadow-sm/40 font-medium 
+	rounded-lg sm:rounded-xl transition-[width, height] duration-400 aspect-[2/3.23]
+	md:aspect-[3.23/2] w-[95%] m-auto bg-surface noise relative
+		${expanded ? `shadow-lg/100 shadow-glow-lg scale-205 active:shadow-glow-lg/100 z-50 ${card.transformOrigin}`
 			: isOtherCardExpanded(card.id) ? 'pointer-events-none animate-fade-out'
-			: `shadow-bottom-sm/40 hover:scale-102 hover:border-primary-700
-				hover:shadow-glow-lg animate-fade-in-mid cursor-pointer`
+			: `shadow-bottom-sm/40 hover:scale-102 hover:shadow-glow-lg animate-fade-in-mid cursor-pointer`
 		}`;
 
 	return (
@@ -32,9 +32,9 @@ export function Card({ card }: CardProps) {
 			className={classes} aria-label={`${expanded ? 'Expanded' : 'Open'} ${card.label} section`}
 			role={expanded ? 'dialog' : 'button'} aria-modal={expanded} tabIndex={0} 
 		>
-			{cardContentMap[card.label]({ card })}
-			<div className={`absolute bottom-[0.5vw] text-indigo-400 transition-all font-saira
-			duration-400 ${expanded ? 'text-[0.625rem]' : 'text-base'}`}>{card.label}</div>
+			<CardContent card={card} />
+			<div className={`absolute bottom-1 sm:bottom-3 md:bottom-[0.5vw] text-indigo-400 transition-all font-saira
+			duration-400 ${expanded ? 'text-xxxxs sm:text-xxs' : 'text-xxs sm:text-base'}`}>{card.label}</div>
 		</div>
 	);
 
