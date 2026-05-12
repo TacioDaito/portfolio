@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CardControlContext } from '../../hooks/useCardControl';
 import { CardProps } from '../../constants/cards';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
@@ -32,27 +32,29 @@ const skills = [
 export const Skills = ({ card }: CardProps) => {
 
     const { isExpanded } = useContext(CardControlContext);
-
     const expanded = isExpanded(card.id);
+    const [open, setOpen] = useState(false);
 
     const classes = {
         grid: `grid justify-items-center items-center w-full max-h-full 
             ${expanded
-                ? `grid-cols-3 grid-rows-6 md:grid-cols-6 md:grid-rows-3 gap-y-1 sm:gap-y-3 
-                    px-2 pb-2 sm:px-4 sm:pb-4`
-                : `grid-cols-2 grid-rows-4 md:grid-cols-4 md:grid-rows-2 gap-y-4 sm:gap-y-8 
-                    px-4 pb-4 sm:px-8 sm:pb-8 animate-fade-in-fast`
+                ? `grid-cols-3 grid-rows-6 md:grid-cols-6 md:grid-rows-3 gap-y-1 xs:gap-y-3 
+                    px-2 pb-2 xs:px-4 xs:pb-4`
+                : `grid-cols-2 grid-rows-4 md:grid-cols-4 md:grid-rows-2 gap-y-4 xs:gap-y-8 
+                    px-4 pb-4 xs:px-8 xs:pb-10 md:pb-6 animate-fade-in-fast`
             }`,
-        logo: `drop-shadow-md/40 group-hover:drop-shadow-sm/100 group-hover:drop-shadow-indigo-600
+        logo: `drop-shadow-sm/40 group-hover:drop-shadow-sm/100 group-hover:drop-shadow-indigo-600
+            group-has-checked:drop-shadow-sm/100 group-has-checked:drop-shadow-indigo-600
             transition-all duration-300
-            ${expanded ? 'h-4 sm:h-7' : 'h-7 sm:h-12'}`,
+            ${expanded ? 'h-3.5 xs:h-6 sm:h-7' : 'h-6 xs:h-12'}`,
         div: expanded ? `flex flex-col gap-1 items-center animate-fade-in-fast 
-            group text-xxxxs sm:text-xxs font-normal` : `hidden`,
+            group text-xxxxs xs:text-xxxs sm:text-xxs font-normal` : `hidden`,
         labelA: expanded ? `relative transition-all duration-400 ease-in-out w-max
-            group-hover:-translate-y-full group-hover:opacity-0 text-stone-300` : `hidden`,
+            group-hover:-translate-y-full group-hover:opacity-0
+            group-has-checked:-translate-y-full group-has-checked:opacity-0 text-stone-300` : `hidden`,
         labelB: expanded ? `absolute translate-y-full opacity-0 transition-all w-max
             duration-400 ease-in-out group-hover:translate-y-0 group-hover:opacity-100
-            text-indigo-200` : `hidden`,
+            group-has-checked:translate-y-0 group-has-checked:opacity-100 text-indigo-200` : `hidden`,
     };
 
     return (
@@ -69,16 +71,20 @@ export const Skills = ({ card }: CardProps) => {
                 </>
                 : <>
                     {skills.map(skill => (
-                        <div key={skill.labelA} className={classes.div}>
-                            <img src={skill.src} alt={skill.labelA} className={classes.logo} />
-                            <span className='relative flex flex-col items-center'>
-                                <span className={classes.labelA}>{skill.labelA}</span>
-                                <span className={classes.labelB}>{skill.labelB}</span>
-                            </span>
-                        </div>
+                        <label key={skill.labelA} className='group flex cursor-pointer'>
+                            <input type="checkbox" className='sr-only' />
+                            <div className={classes.div}>
+                                <img src={skill.src} alt={skill.labelA} className={classes.logo} />
+                                <span className='relative flex flex-col items-center'>
+                                    <span className={classes.labelA}>{skill.labelA}</span>
+                                    <span className={classes.labelB}>{skill.labelB}</span>
+                                </span>
+                            </div>
+                        </label>
                     ))}
-                    <Tooltip>
-                        <TooltipTrigger>
+                    <Tooltip open={open}>
+                        <TooltipTrigger asChild onMouseEnter={() => setOpen(true)}
+                            onMouseLeave={() => setOpen(false)} onClick={() => setOpen(prev => !prev)} >
                             <div className={classes.div}><img src={logo('ellipsis')} alt='Outros'
                                 className={classes.logo} />
                                 <span className='text-stone-200'>Outros</span>

@@ -9,6 +9,8 @@
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-saira: 'Saira';
 
+  --breakpoint-xs: 512px;
+
   --text-xxs: 0.625rem;
   --text-xxxs: 0.5rem;
   --text-xxxxs: 0.375rem;

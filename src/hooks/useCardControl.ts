@@ -48,6 +48,7 @@ export const CardControlContext = createContext<CardControlContextProps>({
 	useEffect(() => {
 		let timeout: ReturnType<typeof setTimeout>
 
+
 		const handleResize = () => {
 			document.body.dataset.resizing = 'true'
 			clearTimeout(timeout)

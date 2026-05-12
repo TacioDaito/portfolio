@@ -18,7 +18,7 @@ export const CardGrid = () => {
 				<DismissableLayer onInteractOutside={() => setExpandedCard(null)}>
 					<div
 						className='grid grid-cols-2 grid-rows-2 items-center rounded-xl sm:rounded-3xl 
-						aspect-[2/3.23] md:aspect-[3.23/2] max-h-225 md:max-w-4xl md:min-w-3xl
+						aspect-[2/3.23] md:aspect-[3.23/2] max-h-225 md:max-w-4xl min-w-70 md:min-w-3xl
 						bg-surface noise shadow-xl/20 animate-fade-in-fast'
 					>
 						<>

@@ -30,30 +30,30 @@ export const Contact = ({ card }: CardProps) => {
     const expanded = isExpanded(card.id);
 
     return (
-        <div className={`text-left px-3 sm:px-6 pb-2 sm:pb-6 md:pb-2
+        <div className={`text-left px-3 xs:px-6 pb-2 xs:pb-6 md:pb-2
             ${expanded
-                ? `flex flex-col gap-4 sm:gap-6 md:gap-4`
-                : `grid grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-4 sm:gap-8 
+                ? `flex flex-col gap-2 xs:gap-4 md:gap-4`
+                : `grid grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-4 xs:gap-8 
                     animate-fade-in-fast`}
             `}
         >
             {CONTACTS.map(({ id, iconSrc, alt, label, value, textClass,
                 expandedClass }) => (
-                <div key={id} className={`flex flex-row gap-1.5 sm:gap-2.5 items-center 
+                <div key={id} className={`flex flex-row gap-1.5 xs:gap-2.5 items-center 
                     ${expanded ? expandedClass : ``}`}>
-                    {expanded && <div className={`h-2 w-2 sm:h-3 sm:w-3 shrink-0`}>
+                    {expanded && <div className={`h-2.5 w-2.5 xs:h-3 xs:w-3 sm:h-3 sm:w-3 shrink-0`}>
                         <CopyButton textToCopy={value} />
                     </div>}
                     <img src={iconSrc} alt={alt} className={`drop-shadow-md/40 
-                        ${expanded ? `h-3 w-3 sm:h-4.5 sm:w-4.5` : `h-5 w-5 sm:h-8 sm:w-8`}`} />
-                    <p className={`${textClass} wrap-anywhere ${expanded ? `text-xxxs sm:text-xs`
-                        : `text-xs sm:text-xl`}`}>
+                        ${expanded ? `h-3 w-3 xs:h-4.5 xs:w-4.5` : `h-5 w-5 xs:h-8 xs:w-8`}`} />
+                    <p className={`${textClass} wrap-anywhere ${expanded ? `text-xxxs xs:text-xs`
+                        : `text-xs xs:text-xl`}`}>
                         {expanded ? value : label}
                     </p>
                 </div>
             ))}
-            {expanded && <p className={`text-stone-400 text-xxxs sm:text-xs text-center 
-                font-normal mt-2 animate-fade-in-slow`}>Localizado em Ananindeua, Pará</p>}
+            {expanded && <p className={`text-stone-400 text-xxxs xs:text-xs text-center 
+                font-normal mt-1 xs:mt-4 md:mt-2 animate-fade-in-slow`}>Localizado em Ananindeua, Pará</p>}
         </div>
     );
 };

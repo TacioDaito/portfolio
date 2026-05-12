@@ -19,9 +19,9 @@ export function Card({ card }: CardProps) {
 	const CardContent = CardContents[card.label];
 
 	const classes = `flex flex-col justify-center items-center text-shadow-sm/40 font-medium 
-	rounded-lg sm:rounded-xl transition-[width, height] duration-400 aspect-[2/3.23]
-	md:aspect-[3.23/2] w-[95%] m-auto bg-surface noise relative
-		${expanded ? `shadow-lg/100 shadow-glow-lg scale-205 active:shadow-glow-lg/100 z-50 ${card.transformOrigin}`
+	rounded-lg sm:rounded-xl [transition:scale_400ms,transform-origin_400ms,box-shadow_200ms]
+	aspect-[2/3.23] md:aspect-[3.23/2] w-[95%] m-auto bg-surface noise relative active:shadow-glow-lg/80
+		${expanded ? `shadow-lg/100 shadow-glow-lg scale-205 z-50 ${card.transformOrigin}`
 			: isOtherCardExpanded(card.id) ? 'pointer-events-none animate-fade-out'
 			: `shadow-bottom-sm/40 hover:scale-102 hover:shadow-glow-lg animate-fade-in-mid cursor-pointer`
 		}`;
@@ -33,8 +33,8 @@ export function Card({ card }: CardProps) {
 			role={expanded ? 'dialog' : 'button'} aria-modal={expanded} tabIndex={0} 
 		>
 			<CardContent card={card} />
-			<div className={`absolute bottom-1 sm:bottom-3 md:bottom-[0.5vw] text-indigo-400 transition-all font-saira
-			duration-400 ${expanded ? 'text-xxxxs sm:text-xxs' : 'text-xxs sm:text-base'}`}>{card.label}</div>
+			<div className={`absolute bottom-1 xs:bottom-3 md:bottom-[0.5vw] text-indigo-400 transition-all font-saira
+			duration-400 ${expanded ? 'text-xxxxs xs:text-xxs' : 'text-xxs xs:text-base'}`}>{card.label}</div>
 		</div>
 	);
 
