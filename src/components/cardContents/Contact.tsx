@@ -52,8 +52,20 @@ export const Contact = ({ card }: CardProps) => {
                     </p>
                 </div>
             ))}
-            {expanded && <p className={`text-stone-400 text-xxxs xs:text-xs text-center 
-                font-normal mt-1 xs:mt-4 md:mt-2 animate-fade-in-slow`}>Localizado em Ananindeua, Pará</p>}
+            {expanded &&
+                <div className='flex flex-col gap-1 justify-center animate-fade-in-slow'>
+                    <a className={`text-stone-400 text-xxxs xs:text-xs text-center
+                    font-normal mt-1 xs:mt-4 md:mt-2 hover:text-stone-200 transition-colors
+                    duration-300 cursor-pointer`}
+                    href='https://drive.google.com/file/d/16bXTgpfXiofE_2d_uHLGXArLckGlVb-Q/view?usp=sharing'>
+                        Clique aqui para ver meu CV!
+                    </a>
+                    <p className={`text-stone-400 text-xxxs xs:text-xs text-center
+                    font-normal`}>
+                    Localizado em Ananindeua, Pará
+                    </p>
+                </div>
+            }
         </div>
     );
 };

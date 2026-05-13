@@ -12,7 +12,7 @@ export const AboutMe = ({ card }: CardProps) => {
         <div className='flex flex-col md:flex-row gap-4 xs:gap-8 md:gap-14 px-2 items-center justify-center'>
             <div className={`flex flex-col text-center md:text-left
                 ${expanded ? 'gap-1 xs:gap-2' : 'gap-2 xs:gap-4'}`}>
-                <p className={`text-stone-100 ${expanded ? 'text-lg xs:text-3xl' :
+                <p className={`gradient-text ${expanded ? 'text-lg xs:text-3xl' :
                     'text-3xl xs:text-5xl'}`}>Tacio Kikuchi</p>
                 {expanded
                     ? <p className='text-stone-200 -mt-0.5 text-xxxs xs:mt-0 xs:text-xs

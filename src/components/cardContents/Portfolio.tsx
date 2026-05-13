@@ -38,7 +38,7 @@ export const Portfolio = ({ card }: CardProps) => {
     return (
         <div className='flex justify-center items-center pb-2 xs:pb-4 md:pb-2'>
             <Carousel setApi={setApi} plugins={[Autoplay({ delay: 4000, }),]}>
-                <CarouselContent className='select-none'>
+                <CarouselContent className='select-none mt-1'>
                     {PORTFOLIOS.map((portfolio) => (
                         <CarouselItem key={portfolio.id} className='flex flex-row justify-center 
                             items-center hover:scale-103 transition-all duration-300'>
@@ -57,11 +57,11 @@ export const Portfolio = ({ card }: CardProps) => {
                 <div className="flex justify-center gap-2 mt-2 xs:mt-4">
                     {Array.from({ length: count }).map((_, index) => (
                         <button
-                            key={index}
-                            className={`w-2 h-1 xs:w-3 xs:h-1.5 rounded-full shadow-sm/40 transition-all duration-300
+                            className={`w-2 h-1 xs:w-3 xs:h-1.5 rounded-full shadow-sm/40 
+                                transition-all duration-300 hover:scale-130
                                 ${isActive(index) ? "bg-stone-200 scale-130" : "bg-stone-600"}
-                                ${expanded ? '' : 'pointer-events-none'}`}
-                            onClick={() => api?.scrollTo(index)}
+                                ${expanded ? 'cursor-pointer' : 'pointer-events-none'}`}
+                            key={index} onClick={() => api?.scrollTo(index)}
                         />
                     ))}
                 </div>

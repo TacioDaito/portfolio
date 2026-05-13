@@ -23,7 +23,7 @@ export function Card({ card }: CardProps) {
 	aspect-[2/3.23] md:aspect-[3.23/2] w-[95%] m-auto bg-surface noise relative active:shadow-glow-lg/80
 		${expanded ? `shadow-lg/100 shadow-glow-lg scale-205 z-50 ${card.transformOrigin}`
 			: isOtherCardExpanded(card.id) ? 'pointer-events-none animate-fade-out'
-			: `shadow-bottom-sm/40 hover:scale-102 hover:shadow-glow-lg animate-fade-in-mid cursor-pointer`
+			: `shadow-bottom-sm/40 hover:scale-102 hover:shadow-glow-xl animate-fade-in-mid cursor-pointer`
 		}`;
 
 	return (
