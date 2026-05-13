@@ -8,19 +8,15 @@ export const CardGrid = () => {
 		handleKeyPressExpand } = useCardControl()
 
 	return (
-		<CardControlContext.Provider
-			value={{
+		<CardControlContext.Provider value={{
 				expandedCard, setExpandedCard, isExpanded, isOtherCardExpanded,
 				handleKeyPressExpand
-			}}
-		>
+		}}>
 			<DismissableLayer onInteractOutside={() => setExpandedCard(null)}>
-				<div className='flex items-center justify-center w-full h-full'>
-					<div
-						className='grid grid-cols-2 grid-rows-2 items-center 
-							rounded-3xl aspect-[3.23/2] w-[50vw] bg-surface
-							noise shadow-xl/20 animate-fade-in-fast'
-					>
+				<div className="p-6 relative flex items-center justify-center">
+					<div className='grid grid-cols-2 grid-rows-2 items-center rounded-xl sm:rounded-3xl
+						aspect-[2/3.23] md:aspect-[3.23/2] max-h-225 md:max-w-4xl min-w-70 md:min-w-3xl
+						shadow-xl/20 animate-fade-in-fast bg-surface noise'>
 						<>
 							{CARDS.map((card) => (
 								<div key={card.id}>

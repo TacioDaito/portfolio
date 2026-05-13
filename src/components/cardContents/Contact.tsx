@@ -30,27 +30,42 @@ export const Contact = ({ card }: CardProps) => {
     const expanded = isExpanded(card.id);
 
     return (
-        <div className={`text-left mb-2 ${expanded
-            ? `flex flex-col gap-4` : `grid grid-cols-2 grid-rows-2 gap-8 
-            animate-fade-in-fast`}`}
+        <div className={`text-left px-3 xs:px-6 pb-2 xs:pb-6 md:pb-2
+            ${expanded
+                ? `flex flex-col gap-2 xs:gap-4 md:gap-4`
+                : `grid grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-4 xs:gap-8 
+                    animate-fade-in-fast`}
+            `}
         >
             {CONTACTS.map(({ id, iconSrc, alt, label, value, textClass,
                 expandedClass }) => (
-                <div key={id} className={`flex flex-row gap-4 items-center 
+                <div key={id} className={`flex flex-row gap-1.5 xs:gap-2.5 items-center 
                     ${expanded ? expandedClass : ``}`}>
-                    {expanded && <div className={`h-4 w-4`}>
+                    {expanded && <div className={`h-2.5 w-2.5 xs:h-3 xs:w-3 sm:h-3 sm:w-3 shrink-0`}>
                         <CopyButton textToCopy={value} />
                     </div>}
-                    <img src={iconSrc} alt={alt} className={expanded
-                        ? `h-5 w-5` : `h-8 w-8`} />
-                    <p className={`${textClass} ${expanded ? `text-xs`
-                        : `text-xl`}`}>
+                    <img src={iconSrc} alt={alt} className={`drop-shadow-md/40 
+                        ${expanded ? `h-3 w-3 xs:h-4.5 xs:w-4.5` : `h-5 w-5 xs:h-8 xs:w-8`}`} />
+                    <p className={`${textClass} wrap-anywhere ${expanded ? `text-xxxs xs:text-xs`
+                        : `text-xs xs:text-xl`}`}>
                         {expanded ? value : label}
                     </p>
                 </div>
             ))}
-            {expanded && <p className={`text-stone-400 text-xs text-center 
-                font-normal mt-2 animate-fade-in-slow`}>Localizado em Ananindeua, Pará</p>}
+            {expanded &&
+                <div className='flex flex-col gap-1 justify-center animate-fade-in-slow'>
+                    <a className={`text-stone-400 text-xxxs xs:text-xs text-center
+                    font-normal mt-1 xs:mt-4 md:mt-2 hover:text-stone-200 transition-colors
+                    duration-300 cursor-pointer`}
+                    href='https://drive.google.com/file/d/16bXTgpfXiofE_2d_uHLGXArLckGlVb-Q/view?usp=sharing'>
+                        Clique aqui para ver meu CV!
+                    </a>
+                    <p className={`text-stone-400 text-xxxs xs:text-xs text-center
+                    font-normal`}>
+                    Localizado em Ananindeua, Pará
+                    </p>
+                </div>
+            }
         </div>
     );
 };

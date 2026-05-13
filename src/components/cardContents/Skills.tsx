@@ -1,73 +1,68 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CardControlContext } from '../../hooks/useCardControl';
 import { CardProps } from '../../constants/cards';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-import phpLogo from '../../assets/images/php.svg'
-import vueLogo from '../../assets/images/vue.svg'
-import reactLogo from '../../assets/images/react.svg'
-import dockerLogo from '../../assets/images/docker.svg'
-import postgresLogo from '../../assets/images/postgres.svg'
-import mariaDbLogo from '../../assets/images/mariadb.svg'
-import laravelLogo from '../../assets/images/laravel.svg'
-import mongoLogo from '../../assets/images/mongo.svg'
-import nextjsLogo from '../../assets/images/nextjs.svg'
-import mySqlLogo from '../../assets/images/mysql.svg'
-import gitLogo from '../../assets/images/git.svg'
-import tailwindLogo from '../../assets/images/tailwind.svg'
-import javaScriptLogo from '../../assets/images/javascript.svg'
-import awsLogo from '../../assets/images/aws.svg'
-import typeScriptLogo from '../../assets/images/typescript.svg'
-import redisLogo from '../../assets/images/redis.svg'
-import n8nLogo from '../../assets/images/n8n.svg'
-import ellipsisLogo from '../../assets/images/ellipsis.svg'
+const logos = import.meta.glob('../../assets/images/*.svg', {
+    eager: true,
+    import: 'default'
+}) as Record<string, string>
+
+const logo = (name: string) => logos[`../../assets/images/${name}.svg`]
+
+const skills = [
+    { src: logo('php'), labelA: 'PHP', labelB: '+3 Anos' },
+    { src: logo('laravel'), labelA: 'Laravel', labelB: '+2 Anos' },
+    { src: logo('javascript'), labelA: 'JavaScript', labelB: '+3 Anos' },
+    { src: logo('vue'), labelA: 'Vue.js', labelB: '+2 Anos' },
+    { src: logo('react'), labelA: 'React.js', labelB: '< 1 Ano' },
+    { src: logo('nextjs'), labelA: 'Next.js', labelB: '< 1 Ano' },
+    { src: logo('typescript'), labelA: 'TypeScript', labelB: '< 1 Ano' },
+    { src: logo('mariadb'), labelA: 'MariaDB', labelB: '+3 Anos' },
+    { src: logo('mysql'), labelA: 'MySQL', labelB: '+3 Anos' },
+    { src: logo('postgres'), labelA: 'PostgreSQL', labelB: '+3 Anos' },
+    { src: logo('mongo'), labelA: 'MongoDB', labelB: '< 1 Ano' },
+    { src: logo('redis'), labelA: 'Redis', labelB: '< 1 Ano' },
+    { src: logo('git'), labelA: 'Git', labelB: '+5 Anos' },
+    { src: logo('docker'), labelA: 'Docker', labelB: '+1 Ano' },
+    { src: logo('n8n'), labelA: 'n8n', labelB: '< 1 Ano' },
+    { src: logo('aws'), labelA: 'AWS', labelB: '< 1 Ano' },
+    { src: logo('tailwind'), labelA: 'Tailwind CSS', labelB: '+2 Anos' },
+]
 
 export const Skills = ({ card }: CardProps) => {
 
     const { isExpanded } = useContext(CardControlContext);
-
     const expanded = isExpanded(card.id);
+    const [open, setOpen] = useState(false);
 
     const classes = {
-        grid: `grid justify-items-center items-center w-full mb-2 ${expanded
-            ? 'grid-cols-6 grid-rows-3 gap-y-4 px-10' : `grid-cols-4 grid-rows-2 gap-y-8
-            animate-fade-in-fast p-16`}`,
-        logo: `drop-shadow-sm/50 group-hover:drop-shadow-sm/100 group-hover:drop-shadow-indigo-600
-            transition-all duration-300 ${expanded ? 'h-7' : 'h-12'}`,
-        div: expanded ? `gap-2 flex flex-col gap-1 items-center animate-fade-in-fast 
-            group text-[0.6rem] font-normal` : `hidden`,
+        grid: `grid justify-items-center items-center w-full max-h-full 
+            ${expanded
+                ? `grid-cols-3 grid-rows-6 md:grid-cols-6 md:grid-rows-3 gap-y-1 xs:gap-y-3 
+                    px-2 pb-2 xs:px-4 xs:pb-4`
+                : `grid-cols-2 grid-rows-4 md:grid-cols-4 md:grid-rows-2 gap-y-4 xs:gap-y-8 
+                    px-4 pb-4 xs:px-8 xs:pb-10 md:pb-6 animate-fade-in-fast`
+            }`,
+        logo: `drop-shadow-sm/40 group-hover:drop-shadow-sm/100 group-hover:drop-shadow-indigo-600
+            group-has-checked:drop-shadow-sm/100 group-has-checked:drop-shadow-indigo-600
+            transition-all duration-300
+            ${expanded ? 'h-3.5 xs:h-6 sm:h-7' : 'h-6 xs:h-12'}`,
+        div: expanded ? `flex flex-col gap-1 items-center animate-fade-in-fast 
+            group text-xxxxs xs:text-xxxs sm:text-xxs font-normal` : `hidden`,
         labelA: expanded ? `relative transition-all duration-400 ease-in-out w-max
-            group-hover:-translate-y-full group-hover:opacity-0 text-stone-300` : `hidden`,
+            group-hover:-translate-y-full group-hover:opacity-0
+            group-has-checked:-translate-y-full group-has-checked:opacity-0 text-stone-300` : `hidden`,
         labelB: expanded ? `absolute translate-y-full opacity-0 transition-all w-max
             duration-400 ease-in-out group-hover:translate-y-0 group-hover:opacity-100
-            text-indigo-200` : `hidden`,
+            group-has-checked:translate-y-0 group-has-checked:opacity-100 text-indigo-200` : `hidden`,
     };
-
-    const skills = [
-        { src: phpLogo, alt: 'PHP', labelB: '+3 Anos' },
-        { src: laravelLogo, alt: 'Laravel', labelB: '+2 Anos' },
-        { src: javaScriptLogo, alt: 'JavaScript', labelB: '+3 Anos' },
-        { src: vueLogo, alt: 'Vue.js', labelB: '+2 Anos' },
-        { src: reactLogo, alt: 'React.js', labelB: '< 1 Ano' },
-        { src: nextjsLogo, alt: 'Next.js', labelB: '< 1 Ano' },
-        { src: typeScriptLogo, alt: 'TypeScript', labelB: '< 1 Ano' },
-        { src: mariaDbLogo, alt: 'MariaDB', labelB: '+3 Anos' },
-        { src: mySqlLogo, alt: 'MySQL', labelB: '+3 Anos' },
-        { src: postgresLogo, alt: 'PostgreSQL', labelB: '+3 Anos' },
-        { src: mongoLogo, alt: 'MongoDB', labelB: '< 1 Ano' },
-        { src: redisLogo, alt: 'Redis', labelB: '< 1 Ano' },
-        { src: gitLogo, alt: 'Git', labelB: '+5 Anos' },
-        { src: dockerLogo, alt: 'Docker', labelB: '+1 Ano' },
-        { src: n8nLogo, alt: 'n8n', labelB: '< 1 Ano' },
-        { src: awsLogo, alt: 'AWS', labelB: '< 1 Ano' },
-        { src: tailwindLogo, alt: 'Tailwind CSS', labelB: '+2 Anos' }
-    ];
 
     return (
         <div className={classes.grid}>
             {!expanded
                 ? <>
-                    {skills.slice(0, 7).map(skill => <img key={skill.alt}
-                        src={skill.src} alt={skill.alt} className={classes.logo} />)}
+                    {skills.slice(0, 7).map(skill => <img key={skill.labelA}
+                        src={skill.src} alt={skill.labelA} className={classes.logo} />)}
                     <p className='text-xl'><span className='text-stone-100'>+</span>
                         <span className='text-stone-200'>1</span>
                         <span className='text-stone-300'>3</span>
@@ -76,17 +71,22 @@ export const Skills = ({ card }: CardProps) => {
                 </>
                 : <>
                     {skills.map(skill => (
-                        <div key={skill.alt} className={classes.div}>
-                            <img src={skill.src} alt={skill.alt} className={classes.logo} />
-                            <span className='relative flex flex-col items-center'>
-                                <span className={classes.labelA}>{skill.alt}</span>
-                                <span className={classes.labelB}>{skill.labelB}</span>
-                            </span>
-                        </div>
+                        <label key={skill.labelA} className='group flex cursor-pointer'>
+                            <input type="checkbox" className='sr-only' />
+                            <div className={classes.div}>
+                                <img src={skill.src} alt={skill.labelA} className={classes.logo} />
+                                <span className='relative flex flex-col items-center'>
+                                    <span className={classes.labelA}>{skill.labelA}</span>
+                                    <span className={classes.labelB}>{skill.labelB}</span>
+                                </span>
+                            </div>
+                        </label>
                     ))}
-                    <Tooltip>
-                        <TooltipTrigger>
-                            <div className={classes.div}><img src={ellipsisLogo} alt='Outros' className={classes.logo} />
+                    <Tooltip open={open}>
+                        <TooltipTrigger asChild onMouseEnter={() => setOpen(true)}
+                            onMouseLeave={() => setOpen(false)} onClick={() => setOpen(prev => !prev)} >
+                            <div className={classes.div}><img src={logo('ellipsis')} alt='Outros'
+                                className={classes.logo} />
                                 <span className='text-stone-200'>Outros</span>
                             </div>
                         </TooltipTrigger>

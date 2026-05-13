@@ -6,35 +6,35 @@ import { Skills } from './cardContents/Skills';
 import { Portfolio } from './cardContents/Portfolio';
 import { Contact } from './cardContents/Contact';
 
-export function Card({ card }: CardProps) {
+const CardContents = {
+	'Sobre Mim': AboutMe, 'Portfólio': Portfolio,
+	'Competências': Skills, 'Contato': Contact
+};
 
+export function Card({ card }: CardProps) {
+	
 	const { setExpandedCard, isExpanded, isOtherCardExpanded, handleKeyPressExpand }
-		= useContext(CardControlContext);
+	= useContext(CardControlContext);
 	const expanded = isExpanded(card.id);
-	const baseClasses = `
-		flex flex-col justify-center items-center text-shadow-xs/30 font-medium
-		rounded-3xl transition-all duration-400 aspect-[3.23/2]
-		w-[95%] m-auto bg-surface noise relative
-	`;
-	const stateClasses = expanded
-		? `shadow-lg/100 shadow-glow-lg scale-205 ${card.transformOrigin} z-50`
-		: isOtherCardExpanded(card.id) ? `pointer-events-none animate-fade-out`
-		: `shadow-bottom-sm/40 hover:scale-102 hover:border-primary-700
-		hover:shadow-glow-lg animate-fade-in-mid cursor-pointer`;
+	const CardContent = CardContents[card.label];
+
+	const classes = `flex flex-col justify-center items-center text-shadow-sm/40 font-medium 
+	rounded-lg sm:rounded-xl [transition:scale_400ms,transform-origin_400ms,box-shadow_200ms]
+	aspect-[2/3.23] md:aspect-[3.23/2] w-[95%] m-auto bg-surface noise relative active:shadow-glow-lg/80
+		${expanded ? `shadow-lg/100 shadow-glow-lg scale-205 z-50 ${card.transformOrigin}`
+			: isOtherCardExpanded(card.id) ? 'pointer-events-none animate-fade-out'
+			: `shadow-bottom-sm/40 hover:scale-102 hover:shadow-glow-xl animate-fade-in-mid cursor-pointer`
+		}`;
 
 	return (
 		<div
-			onClick={() => setExpandedCard(card.id)} className={`${baseClasses} ${stateClasses}`}
-			tabIndex={0} onKeyDown={(event) => handleKeyPressExpand(event, card.id)}
-			aria-label={`${expanded ? 'Expanded' : 'Open'} ${card.label} section`}
-			role={expanded ? 'dialog' : 'button'} aria-modal={expanded}
+			onClick={() => setExpandedCard(card.id)} onKeyDown={(event) => handleKeyPressExpand(event, card.id)}
+			className={classes} aria-label={`${expanded ? 'Expanded' : 'Open'} ${card.label} section`}
+			role={expanded ? 'dialog' : 'button'} aria-modal={expanded} tabIndex={0} 
 		>
-			{card.label === 'Sobre Mim' && <AboutMe card={card} />}
-			{card.label === 'Portfólio' && <Portfolio card={card} />}
-			{card.label === 'Competências' && <Skills card={card} />}
-			{card.label === 'Contato' && <Contact card={card} />}
-			<div className={`absolute bottom-[0.5vw] text-indigo-400 transition-all font-saira
-			duration-400 ${expanded ? 'text-[0.625rem]' : 'text-base'}`}>{card.label}</div>
+			<CardContent card={card} />
+			<div className={`absolute bottom-1 xs:bottom-3 md:bottom-[0.5vw] text-indigo-400 transition-all font-saira
+			duration-400 ${expanded ? 'text-xxxxs xs:text-xxs' : 'text-xxs xs:text-base'}`}>{card.label}</div>
 		</div>
 	);
 
