@@ -6,7 +6,7 @@ export const BgSvgLine = ({ lineCount, loopDuration }: { lineCount: number, loop
         Array.from({ length: lineCount }, () => (
             {
                 rotation: Math.floor(Math.random() * 360),
-                stroke: Math.floor(Math.random() * 8 + 1)
+                stroke: Math.floor(Math.random() * 10 + 1)
             })), [lineCount]);
     const [random, setRandom] = useState(randomArray);
     
@@ -21,7 +21,7 @@ export const BgSvgLine = ({ lineCount, loopDuration }: { lineCount: number, loop
                 return (
                     <svg key={key} width='10000' height='101' xmlns="http://www.w3.org/2000/svg"
                         className={`absolute origin-center overflow-visible animate-neon z-1
-                            w-[400vw] stroke-dark-500`}
+                            w-[400vw] stroke-dark-300`}
                         style={{
                             transform: `rotate(${randomPair.rotation}deg)`,
                             strokeWidth: `${randomPair.stroke}px`

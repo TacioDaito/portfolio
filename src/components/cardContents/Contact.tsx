@@ -21,7 +21,7 @@ const CONTACTS = [{
     expandedClass: `animate-fade-in-mid`
 }, {
     id: 3, iconSrc: gitHubLogo, alt: `GitHub Logo`, label: `GitHub`,
-    value: `github.com/taciokikuchi`, textClass: `text-stone-300`,
+    value: `github.com/TacioDaito`, textClass: `text-stone-300`,
     expandedClass: `animate-fade-in-slow`
 }];
 
@@ -56,7 +56,7 @@ export const Contact = ({ card }: CardProps) => {
                 <div className='flex flex-col gap-1 justify-center animate-fade-in-slow'>
                     <p className={`text-stone-400 text-xxxs xs:text-xs text-center
                     font-normal`}>
-                    Localizado em Ananindeua, Pará
+                        Localizado em Ananindeua, Pará
                     </p>
                 </div>
             }
