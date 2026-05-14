@@ -8,14 +8,14 @@ export const useCarouselControl = () => {
     const isActive = (index: number) => current - 1 === index;
 
     useEffect(() => {
-        if (!api) {
-            return
-        }
+        if (!api) return
         setCount(api.scrollSnapList().length)
-        setCurrent(api.selectedScrollSnap() + 1)
-        api.on("select", () => {
-            setCurrent(api.selectedScrollSnap() + 1)
-        })
+        const handleSelect = () => setCurrent(api.selectedScrollSnap() + 1)
+        api.on("select", handleSelect)
+
+        return () => {
+            api.off("select", handleSelect)
+        }
     }, [api])
 
     return { api, setApi, current, count, isActive }

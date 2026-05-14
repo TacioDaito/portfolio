@@ -13,7 +13,7 @@ export const BgSvgLine = ({ lineCount, loopDuration }: { lineCount: number, loop
     useEffect(() => {
         const id = setInterval(() => setRandom(randomArray()), loopDuration);
         return () => clearInterval(id);
-    }, [loopDuration, randomArray]);
+    });
 
     return (
         <>
