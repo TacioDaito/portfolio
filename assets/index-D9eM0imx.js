@@ -38,14 +38,14 @@ Error generating stack: `+a.message+`
             ${i?"flex flex-col gap-2 xs:gap-4 md:gap-4":`grid grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-4 xs:gap-8 
                     animate-fade-in-fast`}
             `,children:[w3.map(({id:u,iconSrc:c,alt:f,label:d,value:h,textClass:m,expandedClass:g})=>L.jsxs("div",{className:`flex flex-row gap-1.5 xs:gap-2.5 items-center 
-                    ${i?g:""}`,children:[i&&L.jsx("div",{className:"h-2.5 w-2.5 xs:h-3 xs:w-3 sm:h-3 sm:w-3 shrink-0",children:L.jsx(x3,{textToCopy:h})}),L.jsx("img",{src:c,alt:f,className:`drop-shadow-md/40 
+                    ${i?g:""}`,children:[i&&L.jsx("div",{className:"h-2.5 w-2.5 xs:h-3 xs:w-3 sm:h-3 sm:w-3 shrink-0",children:L.jsx(x3,{textToCopy:h})}),L.jsx("img",{src:c,alt:f,className:`drop-shadow-sm/30 
                         ${i?"h-3 w-3 xs:h-4.5 xs:w-4.5":"h-5 w-5 xs:h-8 xs:w-8"}`}),L.jsx("p",{className:`${m} wrap-anywhere ${i?"text-xxxs xs:text-xs":"text-xs xs:text-xl"}`,children:i?h:d})]},u)),i&&L.jsx("div",{className:"flex flex-col gap-1 justify-center animate-fade-in-slow",children:L.jsx("p",{className:`text-stone-400 text-xxxs xs:text-xs text-center
                     font-normal`,children:"Localizado em Ananindeua, Pará"})})]})},k3={"Sobre Mim":Lp,Portfólio:y3,Competências:cg,Contato:S3};function C3({card:r}){const{setExpandedCard:l,isExpanded:i,isOtherCardExpanded:u,handleKeyPressExpand:c}=R.useContext(zr),f=i(r.id),d=k3[r.label],h=`flex flex-col justify-center items-center text-shadow-xs/30 font-medium touch-manipulation 
 	rounded-4xl sm:rounded-5xl 
 	aspect-[2/3.23] md:aspect-[3.23/2] w-[95%] bg-surface noise relative active:shadow-glow-lg/80
 		${f?`shadow-lg/100 shadow-glow-lg scale-205 z-50 rounded-xl sm:rounded-a
 			${r.transformOrigin}`:u(r.id)?"pointer-events-none animate-fade-out":"shadow-bottom-sm/40 hover:scale-102 hover:shadow-glow-xl animate-fade-in-mid cursor-pointer"}`;return L.jsxs("div",{className:"flex justify-center items-center",children:[L.jsxs("div",{onClick:()=>l(r.id),onKeyDown:m=>c(m,r.id),className:h,"aria-label":`${f?"Expanded":"Open"} ${r.label} section`,role:f?"dialog":"button","aria-modal":f,tabIndex:0,children:[L.jsx(d,{card:r}),L.jsx("div",{className:`absolute bottom-1 xs:bottom-3 md:bottom-[0.5vw] text-indigo-400 
-					transition-all duration-400 font-saira
+					font-saira
 					${f?"text-xxxxs xs:text-xxs":"text-xxs xs:text-base"}`,children:r.label})]}),f&&L.jsx("div",{className:`absolute w-22 md:w-28 -bottom-14 xs:bottom-0 md:-bottom-20 right-1/2\r
 				xs:right-2 md:right-1/2 translate-x-1/2 px-6 rounded-xl z-100 text-shadow-sm/20 shadow-sm/30 \r
 				bg-surface noise animate-fade-in-mid cursor-pointer flex items-center justify-center select-none`,onClick:()=>l(null),children:L.jsx("img",{src:df,alt:"Fechar",className:"text-white"})})]})}const E3=()=>{const{expandedCard:r,setExpandedCard:l,isExpanded:i,isOtherCardExpanded:u,handleKeyPressExpand:c}=cf();return L.jsx(zr.Provider,{value:{expandedCard:r,setExpandedCard:l,isExpanded:i,isOtherCardExpanded:u,handleKeyPressExpand:c},children:L.jsx("div",{className:"m-10 relative flex items-center justify-center",children:L.jsx(Pa,{onInteractOutside:()=>l(null),children:L.jsx("div",{className:`grid grid-cols-2 grid-rows-2 items-center rounded-4xl sm:rounded-5-6xl\r
