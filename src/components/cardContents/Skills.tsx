@@ -43,17 +43,17 @@ export const Skills = ({ card }: CardProps) => {
             : `grid-cols-2 grid-rows-4 landscape:grid-cols-4 landscape:grid-rows-2 gap-y-4 xs:gap-y-8 
                     px-4 pb-4 xs:px-8 xs:pb-10 landscape:pb-6 animate-fade-in-fast`
             }`,
-        logo: `drop-shadow-xs/30 [@media(hover:hover)]:group-hover:drop-shadow-sm/100 [@media(hover:hover)]:group-hover:drop-shadow-indigo-600
+        logo: `drop-shadow-xs/30 group-hover:drop-shadow-sm/100 group-hover:drop-shadow-indigo-600
             group-has-checked:drop-shadow-sm/100 group-has-checked:drop-shadow-indigo-600
             transition-transform duration-300
             ${expanded ? 'h-3.5 xs:h-6 sm:h-7' : 'h-6 xs:h-12'}`,
         div: expanded ? `flex flex-col gap-0.5 xs:gap-1 items-center animate-fade-in-fast 
             group text-xxxxs xs:text-xxs sm:text-xs font-normal` : `hidden`,
         labelA: expanded ? `relative transition-[opacity_0s,transform_0s] duration-300 ease-in-out
-            w-max [@media(hover:hover)]:group-hover:-translate-y-full [@media(hover:hover)]:group-hover:opacity-0
+            w-max group-hover:-translate-y-full group-hover:opacity-0
             group-has-checked:-translate-y-full group-has-checked:opacity-0 text-stone-300` : `hidden`,
         labelB: expanded ? `absolute translate-y-full opacity-0 transition-[opacity_0s,transform_0s]
-            duration-300 w-max ease-in-out [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100
+            duration-300 w-max ease-in-out group-hover:translate-y-0 group-hover:opacity-100
             group-has-checked:translate-y-0 group-has-checked:opacity-100 text-indigo-200` : `hidden`,
     };
 

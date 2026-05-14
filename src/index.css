@@ -282,8 +282,8 @@
 @layer components {
   .gradient-text {
 
-    @apply font-bold text-indigo-400 xs:text-shadow-none xs:text-transparent xs:animate-gradient
-      xs:bg-clip-text xs:drop-shadow-[1px_1px_2px_rgba(0,0,0,0.3)];
+    @apply font-bold text-shadow-none text-transparent animate-gradient
+      bg-clip-text drop-shadow-[1px_1px_2px_rgba(0,0,0,0.3)];
   }
 }
 
@@ -296,5 +296,8 @@
   * {
     transition: none !important;
     animation: none !important;    
+  }
+  .gradient-text {
+    @apply text-indigo-400
   }
 }

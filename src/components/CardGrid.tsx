@@ -17,13 +17,11 @@ export const CardGrid = () => {
 						<div className='grid grid-cols-2 grid-rows-2 rounded-4xl xs:rounded-5-6xl
 							aspect-[2/3.23] landscape:aspect-[3.23/2] max-h-225 landscape:max-w-4xl bg-surface
 							noise min-w-70 landscape:min-w-md animate-fade-in-fast xs:p-2 items-center '>
-							<>
-								{CARDS.map((card) => (
-									<div key={card.id}>
-										<Card card={card} />
-									</div>
-								))}
-							</>
+							{CARDS.map((card) => (
+								<div key={card.id}>
+									<Card card={card} />
+								</div>
+							))}
 						</div>
 				</DismissableLayer>
 			</div>

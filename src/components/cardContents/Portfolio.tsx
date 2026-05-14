@@ -7,34 +7,51 @@ import {
     CarouselPrevious
 } from '@/components/ui/carousel';
 import Autoplay from "embla-carousel-autoplay"
-const logos = import.meta.glob('../../assets/images/*.jpg', {
+const prints = import.meta.glob('../../assets/images/*.jpg', {
+    eager: true,
+    import: 'default'
+}) as Record<string, string>
+const logos = import.meta.glob('../../assets/images/*.svg', {
     eager: true,
     import: 'default'
 }) as Record<string, string>
 
-const logo = (name: string) => logos[`../../assets/images/${name}.jpg`]
+const print = (name: string) => prints[`../../assets/images/${name}.jpg`]
+const logo = (name: string) => logos[`../../assets/images/${name}.svg`]
 
 const PORTFOLIOS = [{
-    id: 0, imgSrc: logo('esocialbrasil'), alt: 'Imagem eSocial Brasil',
-    title: 'eSocial Brasil - Contribuinte', link: 'https://www.esocialbrasil.com.br/'
+    id: 0, imgSrc: print('esocialbrasil'), alt: 'Imagem eSocial Brasil',
+    title: 'eSocial Brasil - Contribuinte', link: 'https://www.esocialbrasil.com.br/',
+    stackSrc: [logo('laravel'), logo('vue'), logo('php'), logo('javascript'), logo('mariadb'),
+        logo('mongo'), logo('redis'), logo('docker')
+    ]
 }, {
-    id: 1, imgSrc: logo('sov'), alt: 'SOV',
-    title: 'SOV - Contribuinte', link: 'https://sov.proeg.ufpa.br/'
+    id: 1, imgSrc: print('sov'), alt: 'SOV',
+    title: 'SOV - Contribuinte', link: 'https://sov.proeg.ufpa.br/',
+    stackSrc: [logo('laravel'), logo('php'), logo('javascript'),logo('mariadb')]
 }, {
-    id: 2, imgSrc: logo('sisprol'), alt: 'Imagem SISPROL',
-    title: 'SISPROL - Contribuinte', link: 'https://sisprol.ufpa.br/view/inicio/'
+    id: 2, imgSrc: print('sisprol'), alt: 'Imagem SISPROL',
+    title: 'SISPROL - Contribuinte', link: 'https://sisprol.ufpa.br/view/inicio/',
+    stackSrc: [logo('php'), logo('javascript'), logo('mariadb')]
 }, {
-    id: 3, imgSrc: logo('ppc'), alt: 'PPC',
-    title: 'PPC - Contribuinte', link: 'https://ppc.proeg.ufpa.br/view/inicio/visitante.php'
+    id: 3, imgSrc: print('ppc'), alt: 'PPC',
+    title: 'PPC - Contribuinte', link: 'https://ppc.proeg.ufpa.br/view/inicio/visitante.php',
+    stackSrc: [logo('php'), logo('javascript'), logo('mariadb')]
 }, {
-    id: 4, imgSrc: logo('opiniao'), alt: 'Imagem Minha Opinião',
-    title: 'Minha Opinião - Lead', link: 'https://avaliacao.ufpa.br/'
+    id: 4, imgSrc: print('opiniao'), alt: 'Imagem Minha Opinião',
+    title: 'Minha Opinião - Lead', link: 'https://avaliacao.ufpa.br/',
+    stackSrc: [logo('laravel'), logo('vue'), logo('php'), logo('typescript'), logo('mariadb')]
 }, {
-    id: 5, imgSrc: logo('tarefador'), alt: 'Imagem Tarefador',
-    title: 'Tarefador - Solo', link: 'https://github.com/TacioDaito/tarefador'
+    id: 5, imgSrc: print('tarefador'), alt: 'Imagem Tarefador',
+    title: 'Tarefador - Solo', link: 'https://github.com/TacioDaito/tarefador',
+    stackSrc: [logo('laravel'), logo('vue'), logo('php'), logo('javascript'), logo('mariadb'),
+        logo('mongo'), logo('tailwind'), logo('docker')
+    ]
 }, {
-    id: 6, imgSrc: logo('wip'), alt: 'Imagem WIP',
-    title: 'Folkeep - Solo', link: 'https://github.com/TacioDaito/folkeep'
+    id: 6, imgSrc: print('wip'), alt: 'Imagem WIP',
+    title: 'Folkeep - Solo', link: 'https://github.com/TacioDaito/folkeep',
+    stackSrc: [logo('laravel'), logo('react'), logo('nextjs'), logo('php'), logo('typescript'),
+        logo('postgres'), logo('mongo'), logo('redis'), logo('docker'),]
 }]
 
 export const Portfolio = ({ card }: CardProps) => {
@@ -47,19 +64,27 @@ export const Portfolio = ({ card }: CardProps) => {
             <Carousel setApi={setApi} plugins={[Autoplay({ delay: 4000, }),]}>
                 <CarouselContent className='select-none my-1'>
                     {PORTFOLIOS.map((portfolio) => (
-                        <CarouselItem key={portfolio.id}
-                            className={`flex flex-row justify-center items-center 
-                            transition-transform duration-300 ${expanded ? 'hover:scale-103' : ''}`}>
-                            <img src={portfolio.imgSrc} alt={portfolio.alt}
-                                className={`rounded-lg xs:rounded-2xl h-full shadow-sm/30 w-[80%]
-                                    ${expanded ? 'landscape:w-[65%]' : 'landscape:w-[60%]'}`} />
-                            {expanded && <>
-                                <a href={portfolio.link} target='_blank' className='absolute
-                                w-[85%] md:w-[65%] h-full rounded-lg xs:rounded-2xl'></a>
-                                <p className='absolute px-1 bg-stone-900/60 font-normal
-                                    rounded-xs bottom-1 w-max text-xxxxs xs:text-xxs text-stone-300 
-                                    animate-fade-in-mid'>{portfolio.title}</p>
-                            </>}
+                        <CarouselItem key={portfolio.id} className='flex justify-center'>
+                            {expanded && <div className="absolute top-1 flex flex-row gap-1 xs:gap-2 z-100 w-max">
+                                {portfolio.stackSrc.map((stack, index) => (
+                                    <img src={stack} alt={portfolio.title}
+                                        key={index} className='w-2 xs:w-4 animate-fade-in-fast
+                                            bg-stone-900/70 rounded-xs p-px xs:p-0.5' />
+                                ))}
+                            </div>}
+                            <div className={`transition-transform duration-300 flex justify-center relative
+                                items-center w-[80%] ${expanded ? 'hover:scale-103 landscape:w-[65%]' : 'landscape:w-[60%]'}`}>
+                                <img src={portfolio.imgSrc} alt={portfolio.alt}
+                                    className={`rounded-lg xs:rounded-2xl h-full shadow-sm/30`} />
+                                {expanded && <>
+                                    <a href={portfolio.link} target='_blank' className='absolute
+                                        inset-0 rounded-lg xs:rounded-2xl cursor-pointer'></a>
+                                </>}
+                            </div>
+                            {expanded && <p className='absolute px-1 bg-stone-900/70 font-normal
+                                rounded-xs bottom-1 w-max text-xxxxs xs:text-xxs text-stone-300
+                                animate-fade-in-fast'>{portfolio.title}
+                            </p>}
                         </CarouselItem>
                     ))}
                 </CarouselContent>
