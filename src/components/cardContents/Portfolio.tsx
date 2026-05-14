@@ -38,12 +38,14 @@ export const Portfolio = ({ card }: CardProps) => {
     return (
         <div className='flex justify-center items-center pb-2 xs:pb-4 md:pb-2'>
             <Carousel setApi={setApi} plugins={[Autoplay({ delay: 4000, }),]}>
-                <CarouselContent className='select-none mt-1'>
+                <CarouselContent className='select-none my-1'>
                     {PORTFOLIOS.map((portfolio) => (
-                        <CarouselItem key={portfolio.id} className='flex flex-row justify-center 
-                            items-center hover:scale-103 transition-all duration-300'>
-                            <img src={portfolio.imgSrc} alt={portfolio.alt} className={`rounded-lg xs:rounded-2xl 
-                                w-[85%]shadow-md/40 w-[85%] ${expanded ? 'md:w-[65%]' : 'md:w-[60%]'}`} />
+                        <CarouselItem key={portfolio.id}
+                            className={`flex flex-row justify-center items-center 
+                            transition-transform duration-300 ${expanded ? 'hover:scale-103' : ''}`}>
+                            <img src={portfolio.imgSrc} alt={portfolio.alt}
+                                className={`rounded-lg xs:rounded-2xl shadow-sm/30 w-[80%]
+                                    ${expanded ? 'landscape:w-[65%]' : 'landscape:w-[60%]'}`} />
                             {expanded && <>
                                 <a href={portfolio.link} target='_blank' className='absolute
                                 w-[85%] md:w-[65%] h-full rounded-lg xs:rounded-2xl'></a>
@@ -54,20 +56,20 @@ export const Portfolio = ({ card }: CardProps) => {
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <div className="flex justify-center gap-2 mt-2 xs:mt-4">
+                <div className="flex justify-center gap-2 mt-1 xs:mt-2">
                     {Array.from({ length: count }).map((_, index) => (
                         <button
                             className={`w-2 h-1 xs:w-3 xs:h-1.5 rounded-full shadow-sm/40 
-                                transition-all duration-300 hover:scale-130
+                                transition-transform duration-300 hover:scale-130
                                 ${isActive(index) ? "bg-stone-200 scale-130" : "bg-stone-600"}
                                 ${expanded ? 'cursor-pointer' : 'pointer-events-none'}`}
                             key={index} onClick={() => api?.scrollTo(index)}
                         />
                     ))}
                 </div>
-                {expanded && <CarouselPrevious className='hidden md:inline-flex text-stone-200 w-35 active:-translate-x-2
+                {expanded && <CarouselPrevious className='hidden landscape:inline-flex text-stone-200 w-35 active:-translate-x-2
                     animate-fade-in-mid cursor-pointer' />}
-                {expanded && <CarouselNext className='hidden md:inline-flex text-stone-200 w-35 active:translate-x-2
+                {expanded && <CarouselNext className='hidden landscape:inline-flex text-stone-200 w-35 active:translate-x-2
                     animate-fade-in-mid cursor-pointer' />}
             </Carousel>
         </div>

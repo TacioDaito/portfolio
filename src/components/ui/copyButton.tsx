@@ -19,9 +19,9 @@ export const CopyButton = ({ textToCopy }: { textToCopy: string }) => {
 
     return (
         <button onClick={handleCopy} className={`cursor-pointer
-            flex flex-row justify-center items-center shadow-sm/40
+            flex flex-row justify-center items-center shadow-sm/20
             bg-stone-300 rounded-[20%] hover:scale-110
-            transition-all duration-200 active:bg-stone-400`}
+            transition-transform duration-200 active:bg-stone-400`}
             disabled={copied}>
             <img src={copied ? checkIcon : copyIcon} alt="Copy Icon"
                 className={copied ? 'scale-90' : ''} />

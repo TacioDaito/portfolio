@@ -1,4 +1,7 @@
-import { useState, useEffect, KeyboardEvent as ReactKeyBoardEvent, createContext } from 'react';
+import {
+	useState, useEffect, KeyboardEvent as ReactKeyBoardEvent,
+	createContext, useCallback
+} from 'react';
 import type { CardId } from '../constants/cards';
 
 type ExpandedCard = CardId | null;
@@ -23,17 +26,18 @@ export const CardControlContext = createContext<CardControlContextProps>({
 	handleKeyPressExpand: () => { throw new Error('handleKeyPressExpand called outside CardControlProvider'); },
 });
 
-	export const useCardControl = () => {
+export const useCardControl = () => {
 
 	const [expandedCard, setExpandedCard] = useState<CardId | null>(null);
-	const isExpanded = (cardId: CardId) => expandedCard === cardId;
-	const isOtherCardExpanded = (cardId: CardId) => expandedCard !== null && expandedCard !== cardId;
-	const handleKeyPressExpand = (e: ReactKeyBoardEvent, cardId: CardId) => {
+	const isExpanded = useCallback((cardId: CardId) => expandedCard === cardId, [expandedCard]);
+	const isOtherCardExpanded = useCallback((cardId: CardId) =>
+		expandedCard !== null && expandedCard !== cardId, [expandedCard]);
+	const handleKeyPressExpand = useCallback((e: ReactKeyBoardEvent, cardId: CardId) => {
 		if (e.key === 'Enter' || e.key === ' ') {
 			e.preventDefault();
 			setExpandedCard(cardId);
 		}
-	};
+	}, [setExpandedCard]);
 
 	useEffect(() => {
 		const handleKeyPressEscape = (e: KeyboardEvent) => {
@@ -41,14 +45,13 @@ export const CardControlContext = createContext<CardControlContextProps>({
 				setExpandedCard(null);
 			}
 		}
-		window.addEventListener('keydown', handleKeyPressEscape);
+		window.addEventListener('keydown', handleKeyPressEscape, { passive: true });
+
 		return () => window.removeEventListener('keydown', handleKeyPressEscape);
 	});
 
 	useEffect(() => {
 		let timeout: ReturnType<typeof setTimeout>
-
-
 		const handleResize = () => {
 			document.body.dataset.resizing = 'true'
 			clearTimeout(timeout)
@@ -56,8 +59,8 @@ export const CardControlContext = createContext<CardControlContextProps>({
 				delete document.body.dataset.resizing
 			}, 100)
 		}
+		window.addEventListener('resize', handleResize, { passive: true })
 
-		window.addEventListener('resize', handleResize)
 		return () => {
 			window.removeEventListener('resize', handleResize)
 			clearTimeout(timeout)

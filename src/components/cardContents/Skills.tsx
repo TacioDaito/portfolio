@@ -38,22 +38,22 @@ export const Skills = ({ card }: CardProps) => {
     const classes = {
         grid: `grid justify-items-center items-center w-full max-h-full 
             ${expanded
-                ? `grid-cols-3 grid-rows-6 md:grid-cols-6 md:grid-rows-3 gap-y-1 xs:gap-y-3 
+            ? `grid-cols-3 grid-rows-6 landscape:grid-cols-6 landscape:grid-rows-3 gap-y-1 xs:gap-y-3 
                     px-2 pb-2 xs:px-4 xs:pb-4`
-                : `grid-cols-2 grid-rows-4 md:grid-cols-4 md:grid-rows-2 gap-y-4 xs:gap-y-8 
-                    px-4 pb-4 xs:px-8 xs:pb-10 md:pb-6 animate-fade-in-fast`
+            : `grid-cols-2 grid-rows-4 landscape:grid-cols-4 landscape:grid-rows-2 gap-y-4 xs:gap-y-8 
+                    px-4 pb-4 xs:px-8 xs:pb-10 landscape:pb-6 animate-fade-in-fast`
             }`,
-        logo: `drop-shadow-sm/40 group-hover:drop-shadow-sm/100 group-hover:drop-shadow-indigo-600
+        logo: `drop-shadow-xs/30 [@media(hover:hover)]:group-hover:drop-shadow-sm/100 [@media(hover:hover)]:group-hover:drop-shadow-indigo-600
             group-has-checked:drop-shadow-sm/100 group-has-checked:drop-shadow-indigo-600
-            transition-all duration-300
+            transition-transform duration-300
             ${expanded ? 'h-3.5 xs:h-6 sm:h-7' : 'h-6 xs:h-12'}`,
-        div: expanded ? `flex flex-col gap-1 items-center animate-fade-in-fast 
-            group text-xxxxs xs:text-xxxs sm:text-xxs font-normal` : `hidden`,
-        labelA: expanded ? `relative transition-all duration-400 ease-in-out w-max
-            group-hover:-translate-y-full group-hover:opacity-0
+        div: expanded ? `flex flex-col gap-0.5 xs:gap-1 items-center animate-fade-in-fast 
+            group text-xxxxs xs:text-xxs sm:text-xs font-normal` : `hidden`,
+        labelA: expanded ? `relative transition-[opacity_0s,transform_0s] duration-300 ease-in-out
+            w-max [@media(hover:hover)]:group-hover:-translate-y-full [@media(hover:hover)]:group-hover:opacity-0
             group-has-checked:-translate-y-full group-has-checked:opacity-0 text-stone-300` : `hidden`,
-        labelB: expanded ? `absolute translate-y-full opacity-0 transition-all w-max
-            duration-400 ease-in-out group-hover:translate-y-0 group-hover:opacity-100
+        labelB: expanded ? `absolute translate-y-full opacity-0 transition-[opacity_0s,transform_0s]
+            duration-300 w-max ease-in-out [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100
             group-has-checked:translate-y-0 group-has-checked:opacity-100 text-indigo-200` : `hidden`,
     };
 
