@@ -37,14 +37,11 @@ export const AboutMe = ({ card }: CardProps) => {
                     </a>
                 </div>}
             </div>
-            {expanded &&
-                <label className='group cursor-pointer'>
-                    <input type='checkbox' className='peer sr-only' />
-                    <img src={print('photo')} alt='Foto'
-                        className='aspect-3/4 object-cover h-18 xs:h-32 landscape:h-35 rounded-lg xs:rounded-2xl
-                        noise-overlay shadow-xs/70 animate-fade-in-slow hover:scale-120 hover:transition-transform
-                        peer-checked:scale-120 peer-checked:transition-transform duration-300'/>
-                </label>}
+            {expanded && <img src={print('photo')} alt='Foto'
+                className='aspect-3/4 object-cover h-18 xs:h-32 landscape:h-35 rounded-lg xs:rounded-2xl
+                noise-overlay shadow-xs/70 animate-fade-in-slow hover:scale-120 hover:transition-transform
+                duration-300 cursor-pointer'
+            />}
         </div>
     );
 
