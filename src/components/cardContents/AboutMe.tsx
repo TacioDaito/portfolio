@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { CardProps } from '../../constants/cards';
 import { CardControlContext } from '../../hooks/useCardControl';
-import photo from '../../assets/images/photo.jpg';
+import { print } from '@/lib/imageImports';
 
 export const AboutMe = ({ card }: CardProps) => {
 
@@ -40,7 +40,7 @@ export const AboutMe = ({ card }: CardProps) => {
             {expanded &&
                 <label className='group cursor-pointer'>
                     <input type='checkbox' className='peer sr-only' />
-                    <img src={photo} alt='Foto'
+                    <img src={print('photo')} alt='Foto'
                         className='aspect-3/4 object-cover h-18 xs:h-32 landscape:h-35 rounded-lg xs:rounded-2xl
                         noise-overlay shadow-xs/70 animate-fade-in-slow hover:scale-120 hover:transition-transform
                         peer-checked:scale-120 peer-checked:transition-transform duration-300'/>

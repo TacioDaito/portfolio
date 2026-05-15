@@ -51,21 +51,14 @@ export const useCardControl = () => {
 	});
 
 	useEffect(() => {
-		let timeout: ReturnType<typeof setTimeout>
-		const handleResize = () => {
+		const mql = window.matchMedia('(orientation: landscape)');
+		const handler = () => {
 			document.body.dataset.resizing = 'true'
-			clearTimeout(timeout)
-			timeout = setTimeout(() => {
-				delete document.body.dataset.resizing
-			}, 100)
+			setTimeout(() => delete document.body.dataset.resizing, 100)
 		}
-		window.addEventListener('resize', handleResize, { passive: true })
-
-		return () => {
-			window.removeEventListener('resize', handleResize)
-			clearTimeout(timeout)
-		}
-	}, [])
+		mql.addEventListener("change", handler);
+		return () => mql.removeEventListener("change", handler);
+	}, []);
 
 	return {
 		expandedCard,

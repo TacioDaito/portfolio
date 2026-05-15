@@ -20,11 +20,11 @@ export function Card({ card }: CardProps) {
 	const CardContent = CardContents[card.label];
 
 	const classes = `flex flex-col justify-center items-center text-shadow-xs/30 font-medium touch-manipulation 
-	rounded-4xl xs:rounded-5xl transition-[transform, opacicity] duration-400 will-change-transform max-h-106
+	rounded-4xl xs:rounded-5xl transition-[transform, opacicity] duration-400 max-h-106
 	aspect-[2/3.23] landscape:aspect-[3.23/2] w-[95%] bg-surface noise relative active:shadow-glow-lg/80
 		${expanded ? `shadow-lg/100 shadow-glow-lg scale-205 z-50 rounded-xl xs:rounded-a
 			${card.transformOrigin}`
-			: isOtherCardExpanded(card.id) ? 'pointer-events-none animate-fade-out'
+			: isOtherCardExpanded(card.id) ? 'pointer-events-none animate-fade-out invisible'
 			: `shadow-bottom-sm/40 hover:scale-102 hover:shadow-glow-xl animate-fade-in-fast cursor-pointer`
 		}`;
 
@@ -36,8 +36,7 @@ export function Card({ card }: CardProps) {
 				
 				<CardContent card={card} />
 
-				<div className={`absolute bottom-1 xs:bottom-3 md:bottom-[0.5vw] text-indigo-400 
-					font-saira
+				<div className={`absolute bottom-1 xs:bottom-3 md:bottom-[0.5vw] text-indigo-500 font-saira
 					${expanded ? 'text-xxxxs xs:text-xxs' : 'text-xxs xs:text-base'}`}>{card.label}</div>
 
 			</div>

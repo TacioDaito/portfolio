@@ -2,12 +2,7 @@ import { useContext, useState } from 'react';
 import { CardControlContext } from '../../hooks/useCardControl';
 import { CardProps } from '../../constants/cards';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-const logos = import.meta.glob('../../assets/images/*.svg', {
-    eager: true,
-    import: 'default'
-}) as Record<string, string>
-
-const logo = (name: string) => logos[`../../assets/images/${name}.svg`]
+import { logo } from '@/lib/imageImports';
 
 const skills = [
     { src: logo('php'), labelA: 'PHP', labelB: '+3 Anos' },
@@ -44,17 +39,16 @@ export const Skills = ({ card }: CardProps) => {
                     px-4 pb-4 xs:px-8 xs:pb-10 landscape:pb-6 animate-fade-in-fast`
             }`,
         logo: `drop-shadow-xs/30 group-hover:drop-shadow-sm/100 group-hover:drop-shadow-indigo-600
-            group-has-checked:drop-shadow-sm/100 group-has-checked:drop-shadow-indigo-600
             transition-transform duration-300
-            ${expanded ? 'h-3.5 xs:h-6 sm:h-7' : 'h-6 xs:h-12'}`,
+            ${expanded ? 'h-3.5 xs:h-6' : 'h-6 xs:h-12'}`,
         div: expanded ? `flex flex-col gap-0.5 xs:gap-1 items-center animate-fade-in-fast 
-            group text-xxxxs xs:text-xxs sm:text-xs font-normal` : `hidden`,
+            group text-xxxxs xs:text-xxs font-light` : `hidden`,
         labelA: expanded ? `relative transition-[opacity_0s,transform_0s] duration-300 ease-in-out
             w-max group-hover:-translate-y-full group-hover:opacity-0
-            group-has-checked:-translate-y-full group-has-checked:opacity-0 text-stone-300` : `hidden`,
+            text-stone-300` : `hidden`,
         labelB: expanded ? `absolute translate-y-full opacity-0 transition-[opacity_0s,transform_0s]
             duration-300 w-max ease-in-out group-hover:translate-y-0 group-hover:opacity-100
-            group-has-checked:translate-y-0 group-has-checked:opacity-100 text-indigo-200` : `hidden`,
+            text-indigo-200` : `hidden`,
     };
 
     return (
@@ -63,11 +57,7 @@ export const Skills = ({ card }: CardProps) => {
                 ? <>
                     {skills.slice(0, 7).map(skill => <img key={skill.labelA}
                         src={skill.src} alt={skill.labelA} className={classes.logo} />)}
-                    <p className='text-xl'><span className='text-stone-100'>+</span>
-                        <span className='text-stone-200'>1</span>
-                        <span className='text-stone-300'>3</span>
-                        <span className='text-stone-400'>!</span>
-                    </p>
+                    <p className='text-lg xs:text-3xl text-stone-200'>+13</p>
                 </>
                 : <>
                     {skills.map(skill => (

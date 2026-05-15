@@ -1,23 +1,14 @@
-import { CardProps } from '../../constants/cards';
+import { CardProps } from '@/constants/cards';
 import { useContext } from 'react';
-import { CardControlContext } from '../../hooks/useCardControl';
+import { CardControlContext } from '@/hooks/useCardControl';
 import { useCarouselControl } from '@/hooks/useCarouselControl';
 import {
-    Carousel, CarouselContent, CarouselItem, CarouselNext,
+    Carousel, CarouselContent, CarouselNext,
     CarouselPrevious
 } from '@/components/ui/carousel';
+import { PortfolioCarouselItem } from '@/components/cardContents/PortfolioCarouselItem';
 import Autoplay from "embla-carousel-autoplay"
-const prints = import.meta.glob('../../assets/images/*.jpg', {
-    eager: true,
-    import: 'default'
-}) as Record<string, string>
-const logos = import.meta.glob('../../assets/images/*.svg', {
-    eager: true,
-    import: 'default'
-}) as Record<string, string>
-
-const print = (name: string) => prints[`../../assets/images/${name}.jpg`]
-const logo = (name: string) => logos[`../../assets/images/${name}.svg`]
+import { print, logo } from '@/lib/imageImports';
 
 const PORTFOLIOS = [{
     id: 0, imgSrc: print('esocialbrasil'), alt: 'Imagem eSocial Brasil',
@@ -56,37 +47,15 @@ const PORTFOLIOS = [{
 
 export const Portfolio = ({ card }: CardProps) => {
     const { isExpanded } = useContext(CardControlContext);
-    const expanded = isExpanded(card.id);
     const { count, api, setApi, isActive } = useCarouselControl();
+    const expanded = isExpanded(card.id);
 
     return (
         <div className='flex justify-center items-center pb-2 xs:pb-4 md:pb-2'>
-            <Carousel setApi={setApi} plugins={[Autoplay({ delay: 4000, }),]}>
+            <Carousel setApi={setApi} plugins={[Autoplay({ delay: 4000, })]}
+                opts={{ loop: true }}>
                 <CarouselContent className='select-none my-1'>
-                    {PORTFOLIOS.map((portfolio) => (
-                        <CarouselItem key={portfolio.id} className='flex justify-center'>
-                            {expanded && <div className="absolute top-1 flex flex-row gap-1 xs:gap-2 z-100 w-max">
-                                {portfolio.stackSrc.map((stack, index) => (
-                                    <img src={stack} alt={portfolio.title}
-                                        key={index} className='w-2 xs:w-4 animate-fade-in-fast
-                                            bg-stone-900/70 rounded-xs p-px xs:p-0.5' />
-                                ))}
-                            </div>}
-                            <div className={`transition-transform duration-300 flex justify-center relative
-                                items-center w-[80%] ${expanded ? 'hover:scale-103 landscape:w-[65%]' : 'landscape:w-[60%]'}`}>
-                                <img src={portfolio.imgSrc} alt={portfolio.alt}
-                                    className={`rounded-lg xs:rounded-2xl h-full shadow-sm/30`} />
-                                {expanded && <>
-                                    <a href={portfolio.link} target='_blank' className='absolute
-                                        inset-0 rounded-lg xs:rounded-2xl cursor-pointer'></a>
-                                </>}
-                            </div>
-                            {expanded && <p className='absolute px-1 bg-stone-900/70 font-normal
-                                rounded-xs bottom-1 w-max text-xxxxs xs:text-xxs text-stone-300
-                                animate-fade-in-fast'>{portfolio.title}
-                            </p>}
-                        </CarouselItem>
-                    ))}
+                    <PortfolioCarouselItem portfolios={PORTFOLIOS} expanded={expanded} />
                 </CarouselContent>
                 <div className="flex justify-center gap-2 mt-1 xs:mt-2">
                     {Array.from({ length: count }).map((_, index) => (
@@ -99,10 +68,10 @@ export const Portfolio = ({ card }: CardProps) => {
                         />
                     ))}
                 </div>
-                {expanded && <CarouselPrevious className='hidden landscape:inline-flex text-stone-200 w-35 active:-translate-x-2
-                    animate-fade-in-mid cursor-pointer' />}
-                {expanded && <CarouselNext className='hidden landscape:inline-flex text-stone-200 w-35 active:translate-x-2
-                    animate-fade-in-mid cursor-pointer' />}
+                {expanded && <CarouselPrevious className='hidden landscape:inline-flex 
+                text-stone-200 w-35 active:-translate-x-2 animate-fade-in-mid cursor-pointer' />}
+                {expanded && <CarouselNext className='hidden landscape:inline-flex
+                    text-stone-200 w-35 active:translate-x-2 animate-fade-in-mid cursor-pointer' />}
             </Carousel>
         </div>
     );
