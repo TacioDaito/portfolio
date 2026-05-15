@@ -26,7 +26,8 @@ jobs:
         run: npm ci
 
       - name: Define GitHub ID
-        run:  git config --global user.email "taciokikuchi@gmail.com"
+        run:  |
+              git config --global user.email "taciokikuchi@gmail.com"
               git config --global user.name "TacioDaito"
 
       - name: Deploy
