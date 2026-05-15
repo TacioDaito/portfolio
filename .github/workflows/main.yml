@@ -25,6 +25,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Define GitHub ID
+        run:  git config --global user.email "taciokikuchi@gmail.com"
+              git config --global user.name "TacioDaito"
+
       - name: Deploy
         run: npm run deploy
         env:
