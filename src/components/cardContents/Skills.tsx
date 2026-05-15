@@ -6,7 +6,7 @@ import { logo } from '@/lib/imageImports';
 
 const skills = [
     { src: logo('php'), labelA: 'PHP', labelB: '+3 Anos' },
-    { src: logo('laravel'), labelA: 'Laravel', labelB: '+2 Anos' },
+    { src: logo('laravel'), labelA: 'Laravel', labelB: '+3 Anos' },
     { src: logo('javascript'), labelA: 'JavaScript', labelB: '+3 Anos' },
     { src: logo('vue'), labelA: 'Vue.js', labelB: '+2 Anos' },
     { src: logo('react'), labelA: 'React.js', labelB: '< 1 Ano' },
